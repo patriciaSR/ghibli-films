@@ -75,7 +75,7 @@ function createTag(tag, text, src) {
 
 function filterFilms() {
   const query = queryInput.value.toUpperCase();
-  const filteredFilms = filmsData.filter(film => film.title.toUpperCase().includes(query));
+  const filteredFilms = filmsData.filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)));
 
   return printList(filteredFilms);
 }
