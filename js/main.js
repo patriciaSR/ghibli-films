@@ -4,6 +4,7 @@ const list = document.querySelector('.films__list');
 const queryInput = document.querySelector('.filter__input');
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
+const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
 
 let filmsData = [];
 
@@ -35,8 +36,18 @@ function printList(films) {
 
   const newFilms = films.map(film => {
     const newLi = document.createElement('li');
-    const newText = document.createTextNode(film.title);
-    newLi.appendChild(newText);
+    newLi.classList.add('list__film');
+    const newTitle = createTag('h2', film.title);
+    const newImg = createTag('img', film.title, totoroImg);
+    const newDescriptionTitle = createTag('h3', 'Descripción');
+    const newDescription = createTag('p', film.description);
+    
+    
+    newLi.appendChild(newTitle);
+    newLi.appendChild(newImg);
+    newLi.appendChild(newDescriptionTitle);
+    newLi.appendChild(newDescription);
+
     return newLi;
   })
 
@@ -44,6 +55,23 @@ function printList(films) {
     list.appendChild(film);
   }
 };
+
+function createTag(tag, text, src) {
+  const newTag = document.createElement(tag);
+
+  if (tag === 'img') {
+    newTag.src = src;
+    newTag.alt = text;
+    
+    return newTag
+  } else {
+    const newText = document.createTextNode(text);
+    newTag.appendChild(newText);
+
+    return newTag;
+  }
+  
+}
 
 function filterFilms() {
   const query = queryInput.value.toUpperCase();

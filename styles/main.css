@@ -21,3 +21,11 @@ body, h1 {
 .filter {
   text-align: center;
 }
+
+.list__film > * {
+  display: block;
+}
+
+.list__film img {
+  width: 200px;
+}
