@@ -1,0 +1,23 @@
+body, h1 {
+  margin: 0;
+}
+
+.app__header {
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.headder__img-container {
+  width: 200px;
+}
+
+.header__image {
+  width: 100%;
+}
+
+.filter {
+  text-align: center;
+}

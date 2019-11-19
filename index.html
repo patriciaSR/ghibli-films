@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Películas Ghibli</title>
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body>
+  <header class="app__header">
+    <h1 class="header__title">Películas Estudio Ghibli</h1>
+    <div class="headder__img-container">
+      <img src="images/studio_ghibli_logo.jpg" alt="logo estudio ghibli" class="header__image">
+    </div>
+  </header>
+  <main class="app__main">
+    <section class="filter">
+      <label for="filter">
+        <input class="filter__input" type="text" name="query" id="filter">
+      </label>
+      <button class="filter__button">Buscar</button>
+    </section>
+
+    <section class="films">
+      <h2 class="films__title">Listado de Películas</h2>
+
+      <ol class="films__list">
+
+      </ol>
+    </section>
+  </main>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
