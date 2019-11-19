@@ -12,7 +12,7 @@ let filmsData = [];
 loader();
 setTimeout(getFilms, 4000);
 
-// //get films from API with fetch
+//Opción --> get films from API with fetch
 // function getFilms() {
 //   fetch(ENDPOINT)
 //     .then(res => res.json())
@@ -23,6 +23,21 @@ setTimeout(getFilms, 4000);
 //     })
 //     .catch(error => console.log(error))
 // }
+
+// Opción 2 --> get films from API with async/await
+async function getFilms() {
+  try {
+    let res = await fetch(ENDPOINT);
+    let data = await res.json();
+    filmsData = data;
+
+    listSection.lastChild.remove();
+    return printList(filmsData);
+
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 function loader() {
   const newLoader= createTag('p', 'Loading...');
@@ -99,19 +114,5 @@ queryInput.addEventListener('keyup', filterFilms);
 
 
 
-// Opción 2 --> get films from API with async/await
 
-async function getFilms() {
-  try {
-    let res = await fetch(ENDPOINT);
-    let data = await res.json();
-    filmsData = data;
-
-    listSection.lastChild.remove();
-    return printList(filmsData);
-
-  } catch (error) {
-    console.log(error);
-  }
-}
 
