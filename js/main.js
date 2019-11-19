@@ -1,7 +1,6 @@
 'use strict';
 
 const list = document.querySelector('.films__list');
-const searchBtn = document.querySelector('.filter__button');
 const queryInput = document.querySelector('.filter__input');
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
@@ -54,7 +53,6 @@ function filterFilms() {
 }
 
 //addEventListeners
-searchBtn.addEventListener('click', filterFilms);
 queryInput.addEventListener('keyup', filterFilms);
 
 
