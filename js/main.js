@@ -8,8 +8,8 @@ const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea61
 
 let filmsData = [];
 
-loadingMsg();
-setTimeout(getFilms, 5000);
+loader();
+setTimeout(getFilms, 4000);
 
 // //get films from API with fetch
 // function getFilms() {
@@ -23,11 +23,11 @@ setTimeout(getFilms, 5000);
 //     .catch(error => console.log(error))
 // }
 
-function loadingMsg() {
-  const newP = document.createElement('p');
-  const newText = document.createTextNode('Loading...');
-  newP.appendChild(newText);
-  return list.appendChild(newP);
+function loader() {
+  const newLoader= createTag('p', 'Loading...');
+  newLoader.classList.add('spinner');
+  
+  return list.appendChild(newLoader);
 }
 
 function printList(films) {
@@ -36,10 +36,12 @@ function printList(films) {
   const newFilms = films.map(film => {
     const newFilm = document.createElement('li');
     newFilm.classList.add('list__film');
+    
     const newTitle = createTag('h2', film.title);
     const newImage = createTag('img', film.title, totoroImg);
     const newDescriptionTitle = createTag('h3', 'Descripción >');
     const newDescription = createTag('p', film.description);
+    
     newDescription.classList.add('hidden');
 
     addEventToTag(newDescriptionTitle, unfoldDescription);
