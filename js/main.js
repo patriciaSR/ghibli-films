@@ -26,7 +26,6 @@ setTimeout(sendRequest, 5000);
 function loadingMsg() {
   const newP = document.createElement('p');
   const newText = document.createTextNode('Loading...');
-  newP.add
   newP.appendChild(newText);
   return list.appendChild(newP);
 }
@@ -39,10 +38,12 @@ function printList(films) {
     newLi.classList.add('list__film');
     const newTitle = createTag('h2', film.title);
     const newImg = createTag('img', film.title, totoroImg);
-    const newDescriptionTitle = createTag('h3', 'Descripción');
+    const newDescriptionTitle = createTag('h3', 'Descripción >');
     const newDescription = createTag('p', film.description);
-    
-    
+    newDescription.classList.add('hidden');
+
+    addEventToTag(newDescriptionTitle, unfoldDescription);
+
     newLi.appendChild(newTitle);
     newLi.appendChild(newImg);
     newLi.appendChild(newDescriptionTitle);
@@ -59,18 +60,27 @@ function printList(films) {
 function createTag(tag, text, src) {
   const newTag = document.createElement(tag);
 
-  if (tag === 'img') {
+  if(tag === 'img') {
     newTag.src = src;
     newTag.alt = text;
-    
+
     return newTag
-  } else {
+  }else {
     const newText = document.createTextNode(text);
     newTag.appendChild(newText);
 
     return newTag;
   }
-  
+}
+
+function addEventToTag(tag, func) {
+  tag.addEventListener('click', func);
+}
+
+function unfoldDescription(e) {
+  const title = event.currentTarget;
+  const nextText = title.nextSibling;
+  nextText.classList.toggle('hidden');
 }
 
 function filterFilms() {
@@ -92,17 +102,13 @@ async function sendRequest() {
   try {
     let res = await fetch(ENDPOINT);
     let data = await res.json();
-    let films = await getfilms(data);
+    let films = data;
+    filmsData = films;
 
-    return films;
+    return printList(filmsData);
 
   } catch (error) {
     console.log(error);
   }
 }
 
-function getfilms(data) {
-  filmsData = data;
-
-  return printList(filmsData)
-}
