@@ -1,5 +1,6 @@
 'use strict';
 
+const listSection = document.querySelector('.films');
 const list = document.querySelector('.films__list');
 const queryInput = document.querySelector('.filter__input');
 
@@ -27,7 +28,7 @@ function loader() {
   const newLoader= createTag('p', 'Loading...');
   newLoader.classList.add('spinner');
   
-  return list.appendChild(newLoader);
+  return listSection.appendChild(newLoader);
 }
 
 function printList(films) {
@@ -106,6 +107,7 @@ async function getFilms() {
     let data = await res.json();
     filmsData = data;
 
+    listSection.lastChild.remove();
     return printList(filmsData);
 
   } catch (error) {
