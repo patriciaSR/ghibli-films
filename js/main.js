@@ -1,6 +1,6 @@
 'use strict';
 
-const filterSection = document.querySelector('.filter');
+const filterSection = document.querySelector('.main__filter');
 const infoSection = document.querySelector('.films__info-container');
 const list = document.querySelector('.films__list');
 const queryInput = document.querySelector('.filter__input');
@@ -37,7 +37,9 @@ async function getFilms() {
 
     infoSection.lastChild.remove();
 
-    return printList(filmsData), getDirectors(filmsData);
+    getDirectors(filmsData)
+
+    return printList(filmsData);
 
   } catch (error) {
       console.log(error);
@@ -144,8 +146,7 @@ function unfoldDescription(e) {
 
 function filterFilms(e) {
   const query = queryInput.value.toUpperCase();
-  const querySelect = document.querySelector('.directors__select');
-  console.log(querySelect);
+  const querySelect = document.querySelector('.directors__select').value;
   const filteredFilms = filmsData
                         .filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)))
                         .filter(film => (querySelect !== 'Selecciona un director...') ? film.director === querySelect : true);
