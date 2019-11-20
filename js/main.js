@@ -1,11 +1,12 @@
 'use strict';
 
-const listSection = document.querySelector('.films');
+const infoSection = document.querySelector('.films__info-container');
 const list = document.querySelector('.films__list');
 const queryInput = document.querySelector('.filter__input');
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
+const totoroSad = '../images/totoroSad.gif';
 
 let filmsData = [];
 
@@ -31,7 +32,7 @@ async function getFilms() {
     let data = await res.json();
     filmsData = data;
 
-    listSection.lastChild.remove();
+    infoSection.lastChild.remove();
     return printList(filmsData);
 
   } catch (error) {
@@ -43,11 +44,12 @@ function loader() {
   const newLoader= createTag('p', 'Loading...');
   newLoader.classList.add('spinner');
   
-  return listSection.appendChild(newLoader);
+  return infoSection.appendChild(newLoader);
 }
 
 function printList(films) {
   list.innerHTML = '';
+  infoSection.innerHTML = '';
 
   const newFilms = films.map(film => {
     const newFilm = document.createElement('li');
@@ -104,8 +106,24 @@ function unfoldDescription(e) {
 function filterFilms() {
   const query = queryInput.value.toUpperCase();
   const filteredFilms = filmsData.filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)));
-  
-  return printList(filteredFilms);
+
+  if(!filteredFilms.length) {
+    return noResults();
+  }else {
+    return printList(filteredFilms);    
+  }
+
+}
+
+function noResults() {
+  list.innerHTML= '';
+
+  const noResult = `<div class="noResults__container">
+                      <p class="noResults__text">No hay resultados :( </p>
+                      <img class="noResults__gif" src=${totoroSad} alt="Gif no hay resultados" />
+                    </div>`;
+
+  return infoSection.innerHTML = noResult;
 }
 
 //addEventListeners

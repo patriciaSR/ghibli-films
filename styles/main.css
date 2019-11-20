@@ -72,6 +72,9 @@ body, h1 {
 .list__film h3:hover {
   color: blueviolet;
 }
+.noResults__container {
+  text-align: center;
+}
 .hidden {
   visibility: hidden;
   height: 1px;
