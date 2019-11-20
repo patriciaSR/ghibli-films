@@ -36,13 +36,13 @@ body, h1 {
   color: white;
   border-radius: 15px;
   border-bottom: 3px solid #182ffb;
-  padding: 10px;
+  padding: 15px;
   background-color: #252736;
 }
 .filter__input:hover {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
-select {
+.directors__select {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -55,14 +55,23 @@ select {
   padding: 10px;
   color: grey;
   margin: 10px;
+  width: 200px;
 }
+.select__container {
+  position: relative;
+  display: inline-block;
+}
+.select__container:after {
+  position: absolute;
+  top: 22%;
+  right: 15px;
+  content: "⌄";
+  color: white;
+}
+
 option {
   padding: 10px;
   color: white;
-}
-.directors__select {
-  border: none;
-  box-shadow: none;
 }
 .films__list {
   display: grid;
@@ -96,7 +105,7 @@ option {
   cursor: pointer;
 }
 .list__film h3:hover {
-  color: blueviolet;
+  color: rgb(10, 18, 131);
 }
 .noResults__container {
   text-align: center;

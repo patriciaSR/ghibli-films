@@ -59,6 +59,7 @@ function getDirectors(films) {
     }
   });
 
+  const newSelectContainer = createTag('div', '', 'select__container');
   const newSelect = createTag('select', '', 'directors__select');
   const defaultOption = createTag('option', 'Selecciona un director...', 'option__default');
   newSelect.appendChild(defaultOption);
@@ -70,7 +71,8 @@ function getDirectors(films) {
 
   addEventToTag(newSelect, 'change', filterFilms);
 
-  filterSection.appendChild(newSelect);
+  newSelectContainer.appendChild(newSelect);
+  filterSection.appendChild(newSelectContainer);
 }
 
 function printList(films) {
