@@ -5,6 +5,7 @@ body, h1 {
 }
 .header__title {
   margin: 30px 0;
+  text-align: center;
 }
 .app__header {
   display: flex;
@@ -18,7 +19,7 @@ body, h1 {
 .header__image {
   width: 100%;
 }
-.filter {
+.main__filter {
   text-align: center;
   background-color: aqua;
   padding: 10px;
@@ -45,13 +46,16 @@ body, h1 {
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: 50px;
+  justify-items: center;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .list__film {
   background-color: white;
   margin: 10px;
   padding: 10px;
-  max-width: 350px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,6 +89,9 @@ body, h1 {
   .films__list {
     grid-template-columns: repeat(2, 1fr);
   }
+  .list__film {
+    max-width: 350px;
+  }
 }
 @media (min-width: 1024px) {
   .films__list {
@@ -101,7 +108,7 @@ body, h1 {
   height: 50px;
   width: 50px;
   margin: auto;
-  top: 0;
+  top: 130px;
   left: 0;
   bottom: 0;
   right: 0;

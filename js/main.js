@@ -33,6 +33,7 @@ async function getFilms() {
     filmsData = data;
 
     infoSection.lastChild.remove();
+
     return printList(filmsData);
 
   } catch (error) {
@@ -41,8 +42,7 @@ async function getFilms() {
 };
 
 function loader() {
-  const newLoader= createTag('p', 'Loading...');
-  newLoader.classList.add('spinner');
+  const newLoader= createTag('p', 'Loading...', 'spinner');
   
   return infoSection.appendChild(newLoader);
 };
@@ -52,15 +52,14 @@ function printList(films) {
   infoSection.innerHTML = '';
 
   const newFilms = films.map(film => {
-    const newFilm = document.createElement('li');
-    newFilm.classList.add('list__film');
+    const newFilm = createTag('li', '', 'list__film');
     
-    const newTitle = createTag('h2', film.title);
+    const newTitle = createTag('h2', film.title, 'film__title');
 
     const newImage = selectImage(film.title);
  
-    const newDescriptionTitle = createTag('h3', 'Description >');
-    const newDescription = createTag('p', film.description);
+    const newDescriptionTitle = createTag('h3', 'Description >', 'film__description-title');
+    const newDescription = createTag('p', film.description, 'film__description-text');
     
     newDescription.classList.add('hidden');
 
@@ -79,8 +78,9 @@ function printList(films) {
   }
 };
 
-function createTag(tag, text, src) {
+function createTag(tag, text, className, src) {
   const newTag = document.createElement(tag);
+  newTag.classList.add(className);
 
   if (tag === 'img') {
     newTag.src = src;
@@ -100,9 +100,9 @@ function selectImage(name) {
   let newImage;
 
   if(selectImage) {
-    newImage = createTag('img', name, selectImage.photo);
+    newImage = createTag('img', name, 'film__image', selectImage.photo);
   }else {
-      newImage = createTag('img', name, totoroImg);
+    newImage = createTag('img', name, 'film__image', totoroImg);
     };
 
   return newImage;
