@@ -5,6 +5,7 @@ const infoSection = document.querySelector('.films__info-container');
 const list = document.querySelector('.films__list');
 const queryInput = document.querySelector('.filter__input');
 
+
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
 const totoroSad = '../images/totoroSad.gif';
@@ -144,10 +145,11 @@ function unfoldDescription(e) {
 
 function filterFilms(e) {
   const query = queryInput.value.toUpperCase();
-  const selectValue = e.currentTarget.value;
+  const querySelect = document.querySelector('.directors__select');
+  console.log(querySelect);
   const filteredFilms = filmsData
                         .filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)))
-                        .filter(film => (selectValue !== 'Selecciona un director...') ? film.director === selectValue : true);
+                        .filter(film => (querySelect !== 'Selecciona un director...') ? film.director === querySelect : true);
 
   if(!filteredFilms.length) {
     return noResults();
