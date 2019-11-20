@@ -38,14 +38,14 @@ async function getFilms() {
   } catch (error) {
       console.log(error);
   }
-}
+};
 
 function loader() {
   const newLoader= createTag('p', 'Loading...');
   newLoader.classList.add('spinner');
   
   return infoSection.appendChild(newLoader);
-}
+};
 
 function printList(films) {
   list.innerHTML = '';
@@ -56,7 +56,9 @@ function printList(films) {
     newFilm.classList.add('list__film');
     
     const newTitle = createTag('h2', film.title);
-    const newImage = createTag('img', film.title, totoroImg);
+
+    const newImage = selectImage(film.title);
+ 
     const newDescriptionTitle = createTag('h3', 'Description >');
     const newDescription = createTag('p', film.description);
     
@@ -91,17 +93,30 @@ function createTag(tag, text, src) {
 
     return newTag;
   }
-}
+};
+
+function selectImage(name) {
+  const selectImage = photos.find(photo => photo.name === name);
+  let newImage;
+
+  if(selectImage) {
+    newImage = createTag('img', name, selectImage.photo);
+  }else {
+      newImage = createTag('img', name, totoroImg);
+    };
+
+  return newImage;
+};
 
 function addEventToTag(tag, func) {
   tag.addEventListener('click', func);
-}
+};
 
 function unfoldDescription(e) {
   const Descriptiontitle = event.currentTarget;
   const nextTextDescription = Descriptiontitle.nextSibling;
   nextTextDescription.classList.toggle('hidden');
-}
+};
 
 function filterFilms() {
   const query = queryInput.value.toUpperCase();
@@ -112,8 +127,7 @@ function filterFilms() {
   }else {
     return printList(filteredFilms);    
   }
-
-}
+};
 
 function noResults() {
   list.innerHTML= '';
@@ -124,7 +138,7 @@ function noResults() {
                     </div>`;
 
   return infoSection.innerHTML = noResult;
-}
+};
 
 //addEventListeners
 queryInput.addEventListener('keyup', filterFilms);
