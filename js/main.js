@@ -1,5 +1,6 @@
 'use strict';
 
+const filterSection = document.querySelector('.filter');
 const infoSection = document.querySelector('.films__info-container');
 const list = document.querySelector('.films__list');
 const queryInput = document.querySelector('.filter__input');
@@ -9,6 +10,7 @@ const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea61
 const totoroSad = '../images/totoroSad.gif';
 
 let filmsData = [];
+let filmsDirectors = [];
 
 loader();
 setTimeout(getFilms, 4000);
@@ -33,7 +35,8 @@ async function getFilms() {
     filmsData = data;
 
     infoSection.lastChild.remove();
-    return printList(filmsData);
+
+    return printList(filmsData), getDirectors(filmsData);
 
   } catch (error) {
       console.log(error);
@@ -46,6 +49,27 @@ function loader() {
   
   return infoSection.appendChild(newLoader);
 };
+
+function getDirectors(films) {
+  films.map((film) => {
+    if (!filmsDirectors.includes(film.director)) {
+       return filmsDirectors.push(film.director);
+    }
+  });
+
+  const newSelect = createTag('select', '', 'directors__select');
+  const defaultOption = createTag('option', 'Selecciona un director...', 'option__default');
+  newSelect.appendChild(defaultOption);
+  
+  for (const director of filmsDirectors) {
+    const newOption = createTag('option', director, 'director__name');
+    newSelect.appendChild(newOption);
+  }
+
+  addEventToTag(newSelect, 'change', filterFilms);
+
+  filterSection.appendChild(newSelect);
+}
 
 function printList(films) {
   list.innerHTML = '';
@@ -64,7 +88,7 @@ function printList(films) {
     
     newDescription.classList.add('hidden');
 
-    addEventToTag(newDescriptionTitle, unfoldDescription);
+    addEventToTag(newDescriptionTitle, 'click', unfoldDescription);
 
     newFilm.appendChild(newTitle);
     newFilm.appendChild(newImage);
@@ -108,8 +132,8 @@ function selectImage(name) {
   return newImage;
 };
 
-function addEventToTag(tag, func) {
-  tag.addEventListener('click', func);
+function addEventToTag(tag, event, func) {
+  tag.addEventListener(event, func);
 };
 
 function unfoldDescription(e) {
@@ -118,9 +142,12 @@ function unfoldDescription(e) {
   nextTextDescription.classList.toggle('hidden');
 };
 
-function filterFilms() {
+function filterFilms(e) {
   const query = queryInput.value.toUpperCase();
-  const filteredFilms = filmsData.filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)));
+  const selectValue = e.currentTarget.value;
+  const filteredFilms = filmsData
+                        .filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)))
+                        .filter(film => (selectValue !== 'Selecciona un director...') ? film.director === selectValue : true);
 
   if(!filteredFilms.length) {
     return noResults();

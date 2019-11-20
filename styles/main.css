@@ -41,6 +41,10 @@ body, h1 {
 .filter__input:hover {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
+.directors__select {
+  border: none;
+  box-shadow: none;
+}
 .films__list {
   display: grid;
   grid-template-columns: 1fr;
