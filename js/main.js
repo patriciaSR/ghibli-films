@@ -15,13 +15,13 @@ setTimeout(getFilms, 4000);
 //Opción --> get films from API with fetch
 // function getFilms() {
 //   fetch(ENDPOINT)
-//     .then(res => res.json())
-//     .then(data => {
-//       filmsData = data;
+//   .then(res => res.json())
+//   .then(data => {
+//      filmsData = data;
 
-//       return printList(filmsData)
-//     })
-//     .catch(error => console.log(error))
+//      return printList(filmsData)
+//   })
+//   .catch(error => console.log(error))
 // }
 
 // Opción 2 --> get films from API with async/await
@@ -35,7 +35,7 @@ async function getFilms() {
     return printList(filmsData);
 
   } catch (error) {
-    console.log(error);
+      console.log(error);
   }
 }
 
@@ -55,7 +55,7 @@ function printList(films) {
     
     const newTitle = createTag('h2', film.title);
     const newImage = createTag('img', film.title, totoroImg);
-    const newDescriptionTitle = createTag('h3', 'Descripción >');
+    const newDescriptionTitle = createTag('h3', 'Description >');
     const newDescription = createTag('p', film.description);
     
     newDescription.classList.add('hidden');
@@ -104,7 +104,7 @@ function unfoldDescription(e) {
 function filterFilms() {
   const query = queryInput.value.toUpperCase();
   const filteredFilms = filmsData.filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)));
-
+  
   return printList(filteredFilms);
 }
 
