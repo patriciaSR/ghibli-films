@@ -15,8 +15,6 @@ let filmsDirectors = [];
 
 import { photos } from './photos.js';
 
-loader();
-setTimeout(getFilms, 4000);
 
 //Opción --> get films from API with fetch
 // function getFilms() {
@@ -25,7 +23,7 @@ setTimeout(getFilms, 4000);
 //   .then(data => {
 //      filmsData = data;
 
-//      return printList(filmsData)
+//      return printFilms(filmsData)
 //   })
 //   .catch(error => console.log(error))
 // }
@@ -41,7 +39,7 @@ async function getFilms() {
 
     getDirectors(filmsData)
 
-    return printList(filmsData);
+    return printFilms(filmsData);
 
   } catch (error) {
       console.log(error);
@@ -77,7 +75,7 @@ function getDirectors(films) {
   filterSection.appendChild(newSelectContainer);
 }
 
-function printList(films) {
+function printFilms(films) {
   list.innerHTML = '';
   infoSection.innerHTML = '';
 
@@ -115,14 +113,12 @@ function createTag(tag, text, className, src) {
   if (tag === 'img') {
     newTag.src = src;
     newTag.alt = text;
-
-    return newTag
   } else {
     const newText = document.createTextNode(text);
     newTag.appendChild(newText);
-
-    return newTag;
   }
+
+  return newTag;
 };
 
 function selectImage(name) {
@@ -148,17 +144,17 @@ function unfoldDescription(e) {
   nextTextDescription.classList.toggle('hidden');
 };
 
-function filterFilms(e) {
-  const query = queryInput.value.toUpperCase();
+function filterFilms() {
+  const queryText = queryInput.value.toUpperCase();
   const querySelect = document.querySelector('.directors__select').value;
   const filteredFilms = filmsData
-                        .filter(film => (film.title.toUpperCase().includes(query) || film.description.toUpperCase().includes(query)))
+                        .filter(film => (film.title.toUpperCase().includes(queryText) || film.description.toUpperCase().includes(queryText)))
                         .filter(film => (querySelect !== 'Selecciona un director...') ? film.director === querySelect : true);
 
   if(!filteredFilms.length) {
     return noResults();
   }else {
-    return printList(filteredFilms);    
+    return printFilms(filteredFilms);    
   }
 };
 
@@ -177,7 +173,8 @@ function noResults() {
 queryInput.addEventListener('keyup', filterFilms);
 
 
-
+loader();
+setTimeout(getFilms, 4000);
 
 
 
