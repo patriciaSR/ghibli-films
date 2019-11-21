@@ -1,3 +1,6 @@
+/* eslint-disable lines-around-directive */
+/* eslint-disable import/extensions */
+/* eslint-disable strict */
 'use strict';
 
 import { photos } from './photos.js';
