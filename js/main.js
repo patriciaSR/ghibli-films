@@ -42,20 +42,20 @@ async function getFilms() {
     return printFilms(filmsData);
 
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 };
 
 function loader() {
-  const newLoader= createTag('p', 'Loading...', 'spinner');
-  
+  const newLoader = createTag('p', 'Loading...', 'spinner');
+
   return infoSection.appendChild(newLoader);
 };
 
 function getDirectors(films) {
   films.map((film) => {
     if (!filmsDirectors.includes(film.director)) {
-       return filmsDirectors.push(film.director);
+      return filmsDirectors.push(film.director);
     }
   });
 
@@ -63,7 +63,7 @@ function getDirectors(films) {
   const newSelect = createTag('select', '', 'directors__select');
   const defaultOption = createTag('option', 'Selecciona un director...', 'option__default');
   newSelect.appendChild(defaultOption);
-  
+
   for (const director of filmsDirectors) {
     const newOption = createTag('option', director, 'director__name');
     newSelect.appendChild(newOption);
@@ -81,14 +81,14 @@ function printFilms(films) {
 
   const newFilms = films.map(film => {
     const newFilm = createTag('li', '', 'list__film');
-    
+
     const newTitle = createTag('h2', film.title, 'film__title');
 
     const newImage = selectImage(film.title);
- 
+
     const newDescriptionTitle = createTag('h3', 'Description >', 'film__description-title');
     const newDescription = createTag('p', film.description, 'film__description-text');
-    
+
     newDescription.classList.add('hidden');
 
     addEventToTag(newDescriptionTitle, 'click', unfoldDescription);
@@ -125,11 +125,11 @@ function selectImage(name) {
   const selectImage = photos.find(photo => photo.name === name);
   let newImage;
 
-  if(selectImage) {
+  if (selectImage) {
     newImage = createTag('img', name, 'film__image', selectImage.photo);
-  }else {
+  } else {
     newImage = createTag('img', name, 'film__image', totoroImg);
-    };
+  };
 
   return newImage;
 };
@@ -148,18 +148,18 @@ function filterFilms() {
   const queryText = queryInput.value.toUpperCase();
   const querySelect = document.querySelector('.directors__select').value;
   const filteredFilms = filmsData
-                        .filter(film => (film.title.toUpperCase().includes(queryText) || film.description.toUpperCase().includes(queryText)))
-                        .filter(film => (querySelect !== 'Selecciona un director...') ? film.director === querySelect : true);
+    .filter(film => (film.title.toUpperCase().includes(queryText) || film.description.toUpperCase().includes(queryText)))
+    .filter(film => (querySelect !== 'Selecciona un director...') ? film.director === querySelect : true);
 
-  if(!filteredFilms.length) {
+  if (!filteredFilms.length) {
     return noResults();
-  }else {
-    return printFilms(filteredFilms);    
+  } else {
+    return printFilms(filteredFilms);
   }
 };
 
 function noResults() {
-  list.innerHTML= '';
+  list.innerHTML = '';
 
   const noResult = `<div class="noResults__container">
                       <p class="noResults__text">No hay resultados :( </p>
