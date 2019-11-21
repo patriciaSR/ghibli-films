@@ -13,6 +13,8 @@ const totoroSad = '../images/totoroSad.gif';
 let filmsData = [];
 let filmsDirectors = [];
 
+import { photos } from './photos.js';
+
 loader();
 setTimeout(getFilms, 4000);
 

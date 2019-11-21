@@ -1,4 +1,4 @@
-const photos = [
+export const photos = [
   {
     name: "Castle in the Sky",
     photo: '../images/filmsCoverts/Castle_in_the_Sky_Featured.jpg'
