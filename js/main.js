@@ -59,6 +59,10 @@ function getDirectors(films) {
     }
   });
 
+  createSelectorTag();
+}
+
+function createSelectorTag() {
   const newSelectContainer = createTag('div', '', 'filter__select-container');
   const newSelect = createTag('select', '', 'directors__select');
   const defaultOption = createTag('option', 'Selecciona un director...', 'option__default-name');
@@ -84,7 +88,7 @@ function printFilms(films) {
 
     const newTitle = createTag('h2', film.title, 'film__title');
 
-    const newImage = selectImage(film.title);
+    const newImage = createImageTag(film.title);
 
     const newDescriptionTitle = createTag('h3', 'Description >', 'film__description-title');
     const newDescription = createTag('p', film.description, 'film__description-text');
@@ -121,12 +125,12 @@ function createTag(tag, text, className, src) {
   return newTag;
 };
 
-function selectImage(name) {
-  const selectImage = photos.find(photo => photo.name === name);
+function createImageTag(name) {
+  const selectedImage = photos.find(photo => photo.name === name);
   let newImage;
 
-  if (selectImage) {
-    newImage = createTag('img', name, 'film__image', selectImage.photo);
+  if (selectedImage) {
+    newImage = createTag('img', name, 'film__image', selectedImage.photo);
   } else {
     newImage = createTag('img', name, 'film__image', totoroImg);
   };
