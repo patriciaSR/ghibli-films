@@ -60,11 +60,11 @@ body, h1 {
   margin: 10px;
   width: 200px;
 }
-.select__container {
+.filter__select-container {
   position: relative;
   display: inline-block;
 }
-.select__container:after {
+.filter__select-container:after {
   position: absolute;
   top: 22%;
   right: 15px;
