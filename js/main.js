@@ -16,19 +16,6 @@ let filmsDirectors = [];
 import { photos } from './photos.js';
 
 
-//Opción --> get films from API with fetch
-// function getFilms() {
-//   fetch(ENDPOINT)
-//   .then(res => res.json())
-//   .then(data => {
-//      filmsData = data;
-
-//      return printFilms(filmsData)
-//   })
-//   .catch(error => console.log(error))
-// }
-
-// Opción 2 --> get films from API with async/await
 async function getFilms() {
   try {
     let res = await fetch(ENDPOINT);
