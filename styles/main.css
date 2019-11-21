@@ -1,6 +1,6 @@
 body, h1 {
   margin: 0;
-  background-color: aqua;
+  background-color: #82C1EC;
   font-family: 'Open Sans', sans-serif;
 }
 .header__title {
@@ -21,7 +21,6 @@ body, h1 {
 }
 .main__filter {
   text-align: center;
-  background-color: aqua;
   padding: 10px;
 }
 .filter__label {
@@ -33,14 +32,17 @@ body, h1 {
   margin-top: 5px;
   width: 250px;
   border: 0px;
-  color: white;
+  color: #5294EB;
   border-radius: 15px;
-  border-bottom: 3px solid #182ffb;
+  border-bottom: 3px solid #577342;
   padding: 15px;
   background-color: #252736;
 }
+.filter__input::placeholder {
+  color: #7AC0F2;
+}
 .filter__input:hover {
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0 19px 38px rgba(#000, 0.30), 0 15px 12px rgba(#000, 0.22);
 }
 .directors__select {
   -webkit-appearance: none;
@@ -50,10 +52,11 @@ body, h1 {
   outline: 0;
   box-shadow: none;
   border: 0;
+  border-bottom: 3px solid #577342;
   background: #2c3e50;
   background-image: none;
   padding: 10px;
-  color: grey;
+  color: #7AC0F2;
   margin: 10px;
   width: 200px;
 }
@@ -66,12 +69,12 @@ body, h1 {
   top: 22%;
   right: 15px;
   content: "⌄";
-  color: white;
+  color: #7AC0F2;
 }
 
 .director__name {
   padding: 10px;
-  color: white;
+  color: #7AC0F2;
 }
 .films__list {
   display: grid;
@@ -83,14 +86,14 @@ body, h1 {
   padding: 0;
 }
 .list__film {
-  background-color: white;
+  background-color: #ECE3D4;
   margin: 10px;
   padding: 10px;
   max-width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  box-shadow: 0 19px 38px rgba(#000,0.30), 0 15px 12px rgba(#000,0.22);
 }
 .list__film:hover {
   transform: scale(1.1);
@@ -105,7 +108,7 @@ body, h1 {
   cursor: pointer;
 }
 .film__description-title:hover {
-  color: rgb(10, 18, 131);
+  color: #5096EB;
 }
 .noResults__container {
   text-align: center;
