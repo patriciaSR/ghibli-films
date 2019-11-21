@@ -69,7 +69,7 @@ body, h1 {
   color: white;
 }
 
-option {
+.director__name {
   padding: 10px;
   color: white;
 }
@@ -98,13 +98,13 @@ option {
 .list__film > * {
   display: block;
 }
-.list__film img {
+.film__image {
   width: 200px;
 }
-.list__film h3 {
+.film__description-title {
   cursor: pointer;
 }
-.list__film h3:hover {
+.film__description-title:hover {
   color: rgb(10, 18, 131);
 }
 .noResults__container {
