@@ -13,7 +13,7 @@ const queryInput = document.querySelector('.filter__input');
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
-const totoroSad = './../images/totoroSad.gif';
+const totoroSad = 'images/totoroSad.gif';
 
 let filmsData = [];
 const filmsDirectors = [];
