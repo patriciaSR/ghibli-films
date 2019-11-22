@@ -4,13 +4,13 @@
 'use strict';
 
 import { callApi } from './service.js';
-import { createTag, createImageTag, createSelectorTag, addEventToTag } from './createTags.js';
-import { filterFilms } from './filterFilms.js';
+import { createSelectorTag } from './createTags.js';
 
+import { printFilms } from './printFilms.js';
+import { loader, noResults } from './infoSection.js';
 
-const infoSection = document.querySelector('.films__info-container');
-const list = document.querySelector('.films__list');
 const queryInput = document.querySelector('.filter__input');
+const infoSection = document.querySelector('.films__info-container');
 
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
@@ -19,45 +19,21 @@ let filmsData = [];
 const filmsDirectors = [];
 
 
-function loader() {
-  const newLoader = createTag('p', 'Loading...', 'spinner');
+function filterFilms() {
+  const querySelect = document.querySelector('.directors__select').value;
 
-  return infoSection.appendChild(newLoader);
-}
+  const queryText = queryInput.value.toUpperCase();
+  const isDirectorSelected = querySelect !== 'Selecciona un director...';
 
-function unfoldDescription(event) {
-  const Descriptiontitle = event.currentTarget;
-  const nextTextDescription = Descriptiontitle.nextSibling;
-  nextTextDescription.classList.toggle('hidden');
-}
+  const filteredFilms = filmsData
+    .filter((film) => (film.title.toUpperCase().includes(queryText) || film.description.toUpperCase().includes(queryText)))
+    .filter((film) => (isDirectorSelected ? film.director === querySelect : true));
 
-function printFilms(films) {
-  list.innerHTML = '';
-  infoSection.innerHTML = '';
+  if (!filteredFilms.length) {
+    return noResults();
+  }
 
-  const newFilms = films.map((film) => {
-    const newFilm = createTag('li', '', 'list__film');
-
-    const newTitle = createTag('h2', film.title, 'film__title');
-
-    const newImage = createImageTag(film.title);
-
-    const newDescriptionTitle = createTag('h3', 'Description >', 'film__description-title');
-    const newDescription = createTag('p', film.description, 'film__description-text');
-
-    newDescription.classList.add('hidden');
-
-    addEventToTag(newDescriptionTitle, 'click', unfoldDescription);
-
-    newFilm.appendChild(newTitle);
-    newFilm.appendChild(newImage);
-    newFilm.appendChild(newDescriptionTitle);
-    newFilm.appendChild(newDescription);
-
-    return newFilm;
-  });
-
-  newFilms.map((film) => list.appendChild(film));
+  return printFilms(filteredFilms);
 }
 
 function getDirectors(films) {
@@ -85,3 +61,5 @@ setTimeout(getFilms, 2000);
 
 // addEventListeners
 queryInput.addEventListener('keyup', filterFilms);
+
+export { filterFilms };
