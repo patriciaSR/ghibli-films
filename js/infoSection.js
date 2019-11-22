@@ -1,6 +1,6 @@
 import { createTag } from './createTags.js';
 
-const totoroSad = 'images/totoroSad.gif';
+const totoroSad = './../images/totoroSad.gif';
 
 const infoSection = document.querySelector('.films__info-container');
 const list = document.querySelector('.films__list');
