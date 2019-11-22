@@ -3,6 +3,8 @@
 /* eslint-disable strict */
 'use strict';
 
+import { callApi } from './service.js';
+
 import { photos } from './photos.js';
 
 const filterSection = document.querySelector('.main__filter');
@@ -148,22 +150,16 @@ function getDirectors(films) {
 }
 
 async function getFilms() {
-  try {
-    const res = await fetch(ENDPOINT);
-    const data = await res.json();
-    filmsData = data;
+  filmsData = await callApi(ENDPOINT);
 
-    infoSection.lastChild.remove();
-    getDirectors(filmsData);
-  } catch (error) {
-    return error;
-  }
+  infoSection.lastChild.remove();
+  getDirectors(filmsData);
 
   return printFilms(filmsData);
 }
 
 loader();
-setTimeout(getFilms, 4000);
+setTimeout(getFilms, 2000);
 
 // addEventListeners
 queryInput.addEventListener('keyup', filterFilms);
