@@ -1,5 +1,6 @@
 import { photos } from './photos.js';
-import { filterFilms } from './main.js';
+import { filterFilms, getFilters } from './filterFilms.js';
+import { printFilms } from './printFilms.js';
 
 const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
 
@@ -35,7 +36,7 @@ function createImageTag(name) {
   return newImage;
 }
 
-function createSelectorTag(filmsDirectors) {
+function createSelectorTag(filmsDirectors, films) {
   const filterSection = document.querySelector('.main__filter');
 
   const newSelectContainer = createTag('div', '', 'filter__select-container');
@@ -49,7 +50,13 @@ function createSelectorTag(filmsDirectors) {
     return newSelect;
   });
 
-  addEventToTag(newSelect, 'change', filterFilms);
+  addEventToTag(newSelect, 'change', () => {
+    const filters = getFilters();
+
+    const filteredFilms = filterFilms(films, filters);
+
+    printFilms(filteredFilms);
+  });
 
   newSelectContainer.appendChild(newSelect);
   filterSection.appendChild(newSelectContainer);

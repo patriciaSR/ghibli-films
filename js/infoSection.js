@@ -17,10 +17,18 @@ function noResults() {
   infoSection.innerHTML = noResult;
 }
 
-function loader() {
+function addLoader() {
   const newLoader = createTag('p', 'Loading...', 'spinner');
 
   return infoSection.appendChild(newLoader);
 }
 
-export { noResults, loader };
+function removeLoader() {
+  const spinner = document.querySelector('.spinner');
+
+  if (spinner) {
+    spinner.remove();
+  }
+}
+
+export { noResults, addLoader, removeLoader };
