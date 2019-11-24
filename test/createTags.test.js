@@ -1,7 +1,7 @@
 import { createTag } from '../js/createTags.js';
 
 describe('createTags module', () => {
-  describe('createTag function', () =>{
+  describe('createTag function', () => {
     test('it creates a <div>', () => {
       const tagName = 'div';
       const text = 'foo';
