@@ -1,33 +1,42 @@
-/* eslint-disable lines-around-directive */
-/* eslint-disable import/extensions */
-/* eslint-disable strict */
 'use strict';
 
 import { callApi } from './callApi.js';
-import { createSelectorTag } from './createTags.js';
-
+import { createSelectTag, addEventToTag } from './createTags.js';
 import { printFilms } from './printFilms.js';
 import { addLoader, removeLoader } from './infoSection.js';
 import { filterFilms, getFilters } from './filterFilms.js';
 
 const queryInput = document.querySelector('.filter__input');
-const infoSection = document.querySelector('.films__info-container');
-
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 
 let filmsData = [];
-const filmsDirectors = [];
 
 function getDirectors(films) {
-  films.map((film) => {
+  const filmsDirectors = [];
+
+  films.forEach((film) => {
     if (!filmsDirectors.includes(film.director)) {
       filmsDirectors.push(film.director);
     }
-    return filmsDirectors;
   });
 
-  createSelectorTag(filmsDirectors, filmsData);
+  return filmsDirectors;
+}
+
+function createDirectorsSelect(films) {
+  const directors = getDirectors(films);
+  const newSelect = createSelectTag(directors, 'Selecciona un director...', 'directors');
+  const filterSection = document.querySelector('.main__filter');
+
+  addEventToTag(newSelect, 'change', () => {
+    const filters = getFilters();
+    const filteredFilms = filterFilms(films, filters);
+
+    printFilms(filteredFilms);
+  });
+
+  filterSection.appendChild(newSelect);
 }
 
 function timeout(time) {
@@ -42,7 +51,7 @@ async function getFilms() {
   filmsData = await callApi(ENDPOINT);
 
   removeLoader();
-  getDirectors(filmsData);
+  createDirectorsSelect(filmsData);
 
   return printFilms(filmsData);
 }

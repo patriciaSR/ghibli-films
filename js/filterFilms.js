@@ -1,8 +1,13 @@
+function isTextIncluded(film, queryText) {
+  return film.title.toUpperCase().includes(queryText)
+   || film.description.toUpperCase().includes(queryText);
+}
+
 function filterFilms(films, filters) {
   const { queryText, director } = filters;
 
   const filteredFilms = films
-    .filter((film) => (film.title.toUpperCase().includes(queryText) || film.description.toUpperCase().includes(queryText)))
+    .filter((film) => isTextIncluded(film, queryText))
     .filter((film) => (director ? film.director === director : true));
 
   return filteredFilms;

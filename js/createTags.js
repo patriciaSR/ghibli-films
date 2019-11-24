@@ -1,6 +1,4 @@
 import { photos } from './photos.js';
-import { filterFilms, getFilters } from './filterFilms.js';
-import { printFilms } from './printFilms.js';
 
 const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
 
@@ -36,35 +34,25 @@ function createImageTag(name) {
   return newImage;
 }
 
-function createSelectorTag(filmsDirectors, films) {
-  const filterSection = document.querySelector('.main__filter');
-
+function createSelectTag(options, defaultText, infoClass) {
   const newSelectContainer = createTag('div', '', 'filter__select-container');
-  const newSelect = createTag('select', '', 'directors__select');
-  const defaultOption = createTag('option', 'Selecciona un director...', 'directors__option');
+  const newSelect = createTag('select', '', `${infoClass}__select`);
+  const defaultOption = createTag('option', defaultText, `${infoClass}__option`);
   newSelect.appendChild(defaultOption);
 
-  filmsDirectors.map((director) => {
-    const newOption = createTag('option', director, 'directors__option');
+  options.forEach((option) => {
+    const newOption = createTag('option', option, `${infoClass}__option`);
     newSelect.appendChild(newOption);
-    return newSelect;
-  });
-
-  addEventToTag(newSelect, 'change', () => {
-    const filters = getFilters();
-
-    const filteredFilms = filterFilms(films, filters);
-
-    printFilms(filteredFilms);
   });
 
   newSelectContainer.appendChild(newSelect);
-  filterSection.appendChild(newSelectContainer);
+
+  return newSelectContainer;
 }
 
 export {
   createTag,
   createImageTag,
-  createSelectorTag,
+  createSelectTag,
   addEventToTag,
 };
