@@ -25,4 +25,4 @@ function getFilters() {
   return { queryText, director };
 }
 
-export { filterFilms, getFilters };
+export { filterFilms, getFilters, isTextIncluded };

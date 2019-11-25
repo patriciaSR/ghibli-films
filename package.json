@@ -7,7 +7,9 @@
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "babel-jest": "^24.9.0",
-    "eslint-config-standard": "^14.1.0"
+    "eslint-config-standard": "^14.1.0",
+    "jest-fetch-mock": "^2.1.2",
+    "jsdom": "^15.2.1"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
@@ -27,6 +29,12 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/patriciaSR/ghibli-films/issues"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   },
   "homepage": "https://github.com/patriciaSR/ghibli-films#readme"
 }

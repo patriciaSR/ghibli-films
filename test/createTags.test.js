@@ -1,4 +1,4 @@
-import { createTag } from '../js/createTags.js';
+import { createTag, findImage } from '../js/createTags.js';
 
 describe('createTags module', () => {
   describe('createTag function', () => {
@@ -24,6 +24,22 @@ describe('createTags module', () => {
       expect(result.classList).toContain(className);
       // Otra opción:
       // expect(result.classList.contains(className)).toBeTruthy();
+    });
+
+    test('it creates a <img>', () => {
+      const tagName = 'img';
+      const text = 'foo';
+      const className = 'foo';
+      // const findImage = jest.fn();
+      const src = findImage(text);
+
+      const result = createTag(tagName, text, className);
+
+      expect(result.tagName).toBe(tagName.toUpperCase());
+      expect(result.alt).toBe(text);
+      expect(result.src).toBe(src);
+      expect(result.classList).toContain(className);
+      // expect(findImage).toBeCalled();
     });
   });
 });

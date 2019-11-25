@@ -7,6 +7,7 @@ import { addLoader, removeLoader } from './infoSection.js';
 import { filterFilms, getFilters } from './filterFilms.js';
 
 const queryInput = document.querySelector('.filter__input');
+const infoSection = document.querySelector('.films__info-container');
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 
@@ -46,7 +47,7 @@ function timeout(time) {
 }
 
 async function getFilms() {
-  addLoader();
+  addLoader(infoSection);
   await timeout(2000);
   filmsData = await callApi(ENDPOINT);
 

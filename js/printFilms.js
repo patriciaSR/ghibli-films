@@ -1,4 +1,4 @@
-import { createTag, createImageTag, addEventToTag } from './createTags.js';
+import { createTag, addEventToTag } from './createTags.js';
 import { noResults } from './infoSection.js';
 
 const infoSection = document.querySelector('.films__info-container');
@@ -14,7 +14,7 @@ function printFilm(film) {
 
   const newTitle = createTag('h2', film.title, 'film__title');
 
-  const newImage = createImageTag(film.title);
+  const newImage = createTag('img', film.title, 'film__image');
 
   const newDescriptionTitle = createTag('h3', 'Description >', 'film__description-title');
   const newDescription = createTag('p', film.description, 'film__description-text');
@@ -32,11 +32,11 @@ function printFilm(film) {
 }
 
 function printFilms(films) {
-  if (!films.length) {
-    return noResults();
-  }
-
   const list = document.querySelector('.films__list');
+
+  if (!films.length) {
+    return noResults(list);
+  }
 
   list.innerHTML = '';
   infoSection.innerHTML = '';

@@ -6,12 +6,22 @@ function addEventToTag(tag, event, func) {
   tag.addEventListener(event, func);
 }
 
-function createTag(tag, text, className, src) {
+function findImage(name) {
+  const selectedImage = photos.find((photo) => photo.name === name);
+
+  if (selectedImage) {
+    return selectedImage.photo;
+  }
+
+  return totoroImg;
+}
+
+function createTag(tag, text, className) {
   const newTag = document.createElement(tag);
   newTag.classList.add(className);
 
   if (tag === 'img') {
-    newTag.src = src;
+    newTag.src = findImage(text);
     newTag.alt = text;
   } else {
     const newText = document.createTextNode(text);
@@ -19,19 +29,6 @@ function createTag(tag, text, className, src) {
   }
 
   return newTag;
-}
-
-function createImageTag(name) {
-  const selectedImage = photos.find((photo) => photo.name === name);
-  let newImage;
-
-  if (selectedImage) {
-    newImage = createTag('img', name, 'film__image', selectedImage.photo);
-  } else {
-    newImage = createTag('img', name, 'film__image', totoroImg);
-  }
-
-  return newImage;
 }
 
 function createSelectTag(options, defaultText, infoClass) {
@@ -52,7 +49,7 @@ function createSelectTag(options, defaultText, infoClass) {
 
 export {
   createTag,
-  createImageTag,
   createSelectTag,
   addEventToTag,
+  findImage,
 };

@@ -17,10 +17,13 @@ function noResults() {
   infoSection.innerHTML = noResult;
 }
 
-function addLoader() {
-  const newLoader = createTag('p', 'Loading...', 'spinner');
+function addLoader(infoSection) {
+//  const newLoader = createTag('p', 'Loading...', 'spinner');
+  const newLoader = `<p class="spinner">Loading...</p>`
 
-  return infoSection.appendChild(newLoader);
+  infoSection.innerHTML = newLoader;
+
+  return infoSection;
 }
 
 function removeLoader() {
