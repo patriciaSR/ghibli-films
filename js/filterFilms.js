@@ -1,6 +1,8 @@
 function isTextIncluded(film, queryText) {
-  return film.title.toUpperCase().includes(queryText)
-   || film.description.toUpperCase().includes(queryText);
+  queryText = queryText.toLowerCase();
+
+  return film.title.toLowerCase().includes(queryText)
+   || film.description.toLowerCase().includes(queryText);
 }
 
 function filterFilms(films, filters) {
@@ -15,7 +17,7 @@ function filterFilms(films, filters) {
 
 function getFilters() {
   const queryInput = document.querySelector('.filter__input');
-  const queryText = queryInput.value.toUpperCase();
+  const queryText = queryInput.value;
   let director = document.querySelector('.directors__select').value;
 
   if (director === 'Selecciona un director...') {
