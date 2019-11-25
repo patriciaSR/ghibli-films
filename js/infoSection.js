@@ -18,10 +18,10 @@ function noResults() {
 }
 
 function addLoader(infoSection) {
-//  const newLoader = createTag('p', 'Loading...', 'spinner');
-  const newLoader = `<p class="spinner">Loading...</p>`
+  const newLoader = createTag('p', 'Loading...', 'spinner');
+  // const newLoader = `<p class="spinner">Loading...</p>`
 
-  infoSection.innerHTML = newLoader;
+  infoSection.appendChild(newLoader);
 
   return infoSection;
 }

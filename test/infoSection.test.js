@@ -1,16 +1,23 @@
 import { noResults, addLoader } from '../js/infoSection.js';
 
 describe('infoSection', () => {
-  describe('no Results', () => {
-    test('it creates a <div>', () => {
-      document.body.innerHTML = `<div class="films__info-container"></div>`;
-      const infoSection = document.querySelector('.films__info-container');
-
-      const newLoader = `<p class="spinner">Loading...</p>`;
+  describe('addLoader', () => {
+    test('it creates a <p> inside an element', () => {
+      document.body.innerHTML = '<div></div>';
+      const infoSection = document.querySelector('div');
 
       addLoader(infoSection);
+      const result = infoSection.firstChild;
 
-      expect(infoSection.innerHTML).toBe(newLoader);
+      expect(result.tagName).toBe('P');
+      expect(result.textContent).toBe('Loading...');
+      expect(result.classList).toContain('spinner');
+    });
+
+    test('it throws an error if container is undefined', () => {
+      expect(() => {
+        addLoader();
+      }).toThrow();
     });
   });
 });

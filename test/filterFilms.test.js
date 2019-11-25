@@ -90,5 +90,61 @@ describe('filter films', () => {
       expect(result).toContain(mockFilms[1]);
     });
 
+    test('it throws an error if queryText is undefined', () => {
+      const director = 'chus';
+      const filters = {
+        director,
+      };
+
+      expect(() => {
+        filterFilms(mockFilms, filters);
+      }).toThrow();
+    });
+  });
+});
+
+describe('getFilters test', () => {
+  //Lo que se ejecuta antes de cada test. Hay otros como:
+  //afterEach, before y after.
+  beforeEach(() => {
+    document.body.innerHTML = `
+      <input class="filter__input" />
+      <select class="directors__select">
+        <option value="Selecciona un director..."></option>
+        <option value="foo">Foo</option>
+        <option value="bar">Bar</option>
+      </select>
+    `;
+  });
+
+  test('it returns queryText filter', () => {
+    const queryInput = document.querySelector('.filter__input');
+    const queryText = 'hola';
+
+    queryInput.value = queryText;
+    const result = getFilters();
+
+    expect(result.queryText).toEqual(queryText);
+  });
+
+  test('it returns director filter', () => {
+    const querySelect = document.querySelector('.directors__select');
+    const director = 'foo';
+
+    querySelect.value = director;
+    const result = getFilters();
+
+    expect(result.director).toEqual(director);
+  });
+
+  test('it returns null director filter', () => {
+    const querySelect = document.querySelector('.directors__select');
+    const director = 'Selecciona un director...';
+
+    querySelect.value = director;
+    const result = getFilters();
+
+    expect(result.director).toEqual(null);
+    // expect(result.director).toBeNull();
   });
 });
