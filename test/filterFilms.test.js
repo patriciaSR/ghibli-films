@@ -19,7 +19,7 @@ const mockFilms = [
 ];
 
 describe('filter films', () => {
-  describe('getFilters queries', () => {
+  describe('filter films by queries', () => {
     test('it returns all elements if filter is empty', () => {
       const queryText = '';
       const director = null;
@@ -62,18 +62,33 @@ describe('filter films', () => {
       expect(result).toEqual(expect.arrayContaining(expected));
     });
 
-    // test('it queries are 2', () => {
-    //   const queryText = 'hola';
-    //   const director = 'patricia';
-    //   const filters = {
-    //     queryText,
-    //     director,
-    //   };
+    test('it return all films that contains "adios" and "chus"s director', () => {
+      const queryText = 'adios';
+      const director = 'chus';
+      const filters = {
+        queryText,
+        director,
+      };
 
-    //   const result = getFilters();
+      const result = filterFilms(mockFilms, filters);
 
-    //   expect(result).toEqual(filters);
-    // });
+      expect(result.length).toBe(1);
+      expect(result).toContain(mockFilms[1]);
+    });
+
+    test('it return all films that contains chus"s director', () => {
+      const queryText = '';
+      const director = 'chus';
+      const filters = {
+        queryText,
+        director,
+      };
+
+      const result = filterFilms(mockFilms, filters);
+
+      expect(result.length).toBe(1);
+      expect(result).toContain(mockFilms[1]);
+    });
 
   });
 });
