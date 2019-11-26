@@ -2,8 +2,8 @@ import { createTag, addEventToTag } from './createTags.js';
 import { noResults } from './infoSection.js';
 
 function unfoldDescription(event) {
-  const Descriptiontitle = event.currentTarget;
-  const nextTextDescription = Descriptiontitle.nextSibling;
+  const descriptionTitle = event.currentTarget;
+  const nextTextDescription = descriptionTitle.nextSibling;
   nextTextDescription.classList.toggle('hidden');
 }
 

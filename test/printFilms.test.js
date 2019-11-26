@@ -55,21 +55,21 @@ describe('printFilms', () => {
   });
 });
 
-// describe('unfoldDescription', () => {
-//   test('it add or remove a class hidden in description <p>', () => {
-//     document.body.innerHTML = `
-//     <li>
-//       <h2></h2>
-//       <p><p>
-//     </li>
-//     `;
-//     const filmTitle = document.querySelector('h2');
-//     const event = new Event('click', {"target":{"value":filmTitle}})
-//     addEventToTag(filmTitle, 'click', unfoldDescription);
-//     filmTitle.click(event);
-//     const textDesc = document.querySelector('p');
+describe('unfoldDescription', () => {
+  test('it toogles the class hidden in an element', () => {
+    const textDescription = document.createElement('p');
+    const mockEvent = {
+      currentTarget: {
+        nextSibling: textDescription,
+      },
+    };
 
-//     // expect(unfoldDescription).toHaveBeenCalled();
-//     expect(textDesc.classList).toContain('hidden');
-//   });
-// });
+    unfoldDescription(mockEvent);
+
+    expect(textDescription.classList).toContain('hidden');
+
+    unfoldDescription(mockEvent);
+
+    expect(textDescription.classList).not.toContain('hidden');
+  });
+});
