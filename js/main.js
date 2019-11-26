@@ -43,8 +43,6 @@ function createDirectorsSelect(films) {
   filterSection.appendChild(newSelect);
 }
 
-
-
 async function getFilms() {
   addLoader(infoSection);
   await timeout(2000);

@@ -1,4 +1,18 @@
-import { createTag, findImage } from '../js/createTags.js';
+import { createTag, findImage, createSelectTag } from '../js/createTags.js';
+import { photos } from '../js/photos.js';
+
+const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
+
+const photosFakeArr = [
+  {
+    name: 'patricia',
+    photo: 'patriciaURL',
+  },
+  {
+    name: 'paco',
+    photo: 'pacoURL',
+  },
+];
 
 describe('createTags module', () => {
   describe('createTag function', () => {
@@ -31,7 +45,7 @@ describe('createTags module', () => {
       const text = 'foo';
       const className = 'foo';
       // const findImage = jest.fn();
-      const src = findImage(text);
+      const src = findImage(text, photos);
 
       const result = createTag(tagName, text, className);
 
@@ -40,6 +54,45 @@ describe('createTags module', () => {
       expect(result.src).toBe(src);
       expect(result.classList).toContain(className);
       // expect(findImage).toBeCalled();
+    });
+  });
+
+  describe('createSelector function', () => {
+    test('it creates a select', () => {
+      const options = ['patricia', 'clara', 'marta'];
+      const defaultText = 'foo';
+      const className = 'foo';
+
+      const result = createSelectTag(options, defaultText, className);
+      const select = result.querySelector(`.${className}__select`);
+      const option = result.querySelector(`.${className}__option`);;
+
+      expect(select.tagName).toBe('SELECT');
+      expect(select.length).toBe(4);
+      expect(select.classList).toContain(`${className}__select`);
+
+      expect(option.tagName).toBe('OPTION');
+      expect(option.textContent).toBe(defaultText);
+      expect(option.classList).toContain(`${className}__option`);
+    });
+  });
+
+  describe('findImage src', () => {
+    test('it find a image with a name', () => {
+      const name = 'patricia';
+
+      const result = findImage(name, photosFakeArr);
+
+      expect(result).toBe('patriciaURL');
+    });
+
+    test('it find a image with no matching name', () => {
+      const name = 'lola';
+      const defaultPhoto = totoroImg;
+
+      const result = findImage(name, photosFakeArr);
+
+      expect(result).toBe(defaultPhoto);
     });
   });
 });

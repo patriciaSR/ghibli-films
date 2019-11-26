@@ -6,8 +6,8 @@ function addEventToTag(tag, event, func) {
   tag.addEventListener(event, func);
 }
 
-function findImage(name) {
-  const selectedImage = photos.find((photo) => photo.name === name);
+function findImage(name, photosArr) {
+  const selectedImage = photosArr.find((photo) => photo.name === name);
 
   if (selectedImage) {
     return selectedImage.photo;
@@ -21,7 +21,7 @@ function createTag(tag, text, className) {
   newTag.classList.add(className);
 
   if (tag === 'img') {
-    newTag.src = findImage(text);
+    newTag.src = findImage(text, photos);
     newTag.alt = text;
   } else {
     const newText = document.createTextNode(text);

@@ -2,8 +2,6 @@ import { createTag } from './createTags.js';
 
 const totoroSad = './../images/totoroSad.gif';
 
-
-
 function noResults(list, infoSection) {
   list.innerHTML = '';
 
