@@ -99,13 +99,4 @@ describe('addEventListener function', () => {
 
     expect(func).toHaveBeenCalled();
   });
-
-  test('it find a image with no matching name', () => {
-    const name = 'lola';
-    const defaultPhoto = totoroImg;
-
-    const result = findImage(name, photosFakeArr);
-
-    expect(result).toBe(defaultPhoto);
-  });
 });

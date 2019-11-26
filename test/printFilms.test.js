@@ -1,5 +1,6 @@
 import { printFilm, printFilms, unfoldDescription } from '../js/printFilms.js';
 import { mockFilms } from './fixtures/variables-fixtures.js';
+import { addEventToTag } from '../js/createTags.js';
 
 describe('printFilms', () => {
   describe('printFilm', () => {
@@ -52,17 +53,23 @@ describe('printFilms', () => {
       expect(noResultText.classList).toContain('noResults__container');
     });
   });
-
-  // describe('unfoldDescription', () => {
-  //   test('it add or remove a class hidden in description <p>', () => {
-  //     document.body.innerHTML = `
-  //     <li>
-  //       <h2></h2>
-  //       <p><p>
-  //     </li>
-  //     `;
-  //     const filmTitle = document.querySelector('h2');
-  //     unfoldDescription(filmTitle);
-  //   });
-  // });
 });
+
+// describe('unfoldDescription', () => {
+//   test('it add or remove a class hidden in description <p>', () => {
+//     document.body.innerHTML = `
+//     <li>
+//       <h2></h2>
+//       <p><p>
+//     </li>
+//     `;
+//     const filmTitle = document.querySelector('h2');
+//     const event = new Event('click', {"target":{"value":filmTitle}})
+//     addEventToTag(filmTitle, 'click', unfoldDescription);
+//     filmTitle.click(event);
+//     const textDesc = document.querySelector('p');
+
+//     // expect(unfoldDescription).toHaveBeenCalled();
+//     expect(textDesc.classList).toContain('hidden');
+//   });
+// });
