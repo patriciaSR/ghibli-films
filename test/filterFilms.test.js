@@ -1,111 +1,94 @@
 import { filterFilms, getFilters } from '../js/filterFilms.js';
+import { mockFilms } from './fixtures/variables-fixtures.js';
 
-const mockFilms = [
-  {
-    title: 'hola',
-    description: 'no',
-    director: 'patricia',
-  },
-  {
-    title: 'adios',
-    description: 'no',
-    director: 'chus',
-  },
-  {
-    title: 'byeo',
-    description: 'yes',
-    director: 'luis',
-  },
-];
 
-describe('filter films', () => {
-  describe('filter films by queries', () => {
-    test('it returns all elements if filter is empty', () => {
-      const queryText = '';
-      const director = null;
-      const filters = {
-        queryText,
-        director,
-      };
+describe('filter films, filter films by queries', () => {
+  test('it returns all elements if filter is empty', () => {
+    const queryText = '';
+    const director = null;
+    const filters = {
+      queryText,
+      director,
+    };
 
-      const result = filterFilms(mockFilms, filters);
+    const result = filterFilms(mockFilms, filters);
 
-      expect(result).toEqual(mockFilms);
-    });
+    expect(result).toEqual(mockFilms);
+  });
 
-    test('it returns all elements that contains "hola"', () => {
-      const queryText = 'hola';
-      const director = null;
-      const filters = {
-        queryText,
-        director,
-      };
+  test('it returns all elements that contains "hola"', () => {
+    const queryText = 'hola';
+    const director = null;
+    const filters = {
+      queryText,
+      director,
+    };
 
-      const result = filterFilms(mockFilms, filters);
+    const result = filterFilms(mockFilms, filters);
 
-      expect(result.length).toBe(1);
-      expect(result).toContain(mockFilms[0]);
-    });
+    expect(result.length).toBe(1);
+    expect(result).toContain(mockFilms[0]);
+  });
 
-    test('it returns all elements that contains "no"', () => {
-      const queryText = 'no';
-      const director = null;
-      const filters = {
-        queryText,
-        director,
-      };
-      const expected = mockFilms.slice(0, 1);
+  test('it returns all elements that contains "no"', () => {
+    const queryText = 'no';
+    const director = null;
+    const filters = {
+      queryText,
+      director,
+    };
 
-      const result = filterFilms(mockFilms, filters);
+    const expected = mockFilms.slice(0, 1);
 
-      expect(result.length).toBe(2);
-      expect(result).toEqual(expect.arrayContaining(expected));
-    });
+    const result = filterFilms(mockFilms, filters);
 
-    test('it return all films that contains "adios" and "chus"s director', () => {
-      const queryText = 'adios';
-      const director = 'chus';
-      const filters = {
-        queryText,
-        director,
-      };
+    expect(result.length).toBe(2);
+    expect(result).toEqual(expect.arrayContaining(expected));
+  });
 
-      const result = filterFilms(mockFilms, filters);
+  test('it return all films that contains "adios" and "chus"s director', () => {
+    const queryText = 'adios';
+    const director = 'chus';
+    const filters = {
+      queryText,
+      director,
+    };
 
-      expect(result.length).toBe(1);
-      expect(result).toContain(mockFilms[1]);
-    });
+    const result = filterFilms(mockFilms, filters);
 
-    test('it return all films that contains chus"s director', () => {
-      const queryText = '';
-      const director = 'chus';
-      const filters = {
-        queryText,
-        director,
-      };
+    expect(result.length).toBe(1);
+    expect(result).toContain(mockFilms[1]);
+  });
 
-      const result = filterFilms(mockFilms, filters);
+  test('it return all films that contains chus"s director', () => {
+    const queryText = '';
+    const director = 'chus';
+    const filters = {
+      queryText,
+      director,
+    };
 
-      expect(result.length).toBe(1);
-      expect(result).toContain(mockFilms[1]);
-    });
+    const result = filterFilms(mockFilms, filters);
 
-    test('it throws an error if queryText is undefined', () => {
-      const director = 'chus';
-      const filters = {
-        director,
-      };
+    expect(result.length).toBe(1);
+    expect(result).toContain(mockFilms[1]);
+  });
 
-      expect(() => {
-        filterFilms(mockFilms, filters);
-      }).toThrow();
-    });
+  test('it throws an error if queryText is undefined', () => {
+    const director = 'chus';
+    const filters = {
+      director,
+    };
+
+    expect(() => {
+      filterFilms(mockFilms, filters);
+    }).toThrow();
   });
 });
 
 describe('getFilters test', () => {
-  //Lo que se ejecuta antes de cada test. Hay otros como:
-  //afterEach, before y after.
+  // Lo que se ejecuta antes de cada test. Hay otros como:
+  // afterEach, before y after.
   beforeEach(() => {
     document.body.innerHTML = `
       <input class="filter__input" />

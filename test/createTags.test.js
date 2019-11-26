@@ -58,7 +58,7 @@ describe('createTags module', () => {
   });
 
   describe('createSelector function', () => {
-    test('it creates a select', () => {
+    test('it creates a select node', () => {
       const options = ['patricia', 'clara', 'marta'];
       const defaultText = 'foo';
       const className = 'foo';
