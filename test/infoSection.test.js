@@ -37,6 +37,16 @@ describe('infoSection', () => {
       // expect(infoSection.firstChild.classList).not.toContain('spinner');
       // expect(infoSection.firstChild.textContent).not.toBe('Loading...');
     });
+    test('it do nothing if spinner is undefined', () => {
+      document.body.innerHTML = `
+        <div>
+        </div>
+      `;
+      removeLoader();
+      const infoSection = document.querySelector('div');
+
+      expect(infoSection.length).toBe(undefined);
+    });
   });
 
   describe('noResults', () => {

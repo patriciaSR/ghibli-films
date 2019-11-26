@@ -1,8 +1,6 @@
 import { createTag, addEventToTag } from './createTags.js';
 import { noResults } from './infoSection.js';
 
-const infoSection = document.querySelector('.films__info-container');
-
 function unfoldDescription(event) {
   const Descriptiontitle = event.currentTarget;
   const nextTextDescription = Descriptiontitle.nextSibling;
@@ -31,9 +29,7 @@ function printFilm(film) {
   return newFilm;
 }
 
-function printFilms(films) {
-  const list = document.querySelector('.films__list');
-
+function printFilms(list, infoSection, films = []) {
   if (!films.length) {
     return noResults(list, infoSection);
   }
@@ -49,4 +45,4 @@ function printFilms(films) {
   return null;
 }
 
-export { printFilms };
+export { printFilms, printFilm, unfoldDescription };

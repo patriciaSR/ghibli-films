@@ -21,7 +21,7 @@ function addLoader(infoSection) {
   return infoSection;
 }
 
-function removeLoader(spinner) {
+function removeLoader(spinner = undefined) {
   if (spinner) {
     spinner.remove();
   }

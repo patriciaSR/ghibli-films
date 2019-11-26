@@ -11,6 +11,7 @@ import { timeout } from './timeout.js';
 const queryInput = document.querySelector('.filter__input');
 const infoSection = document.querySelector('.films__info-container');
 const spinner = document.querySelector('.spinner');
+const list = document.querySelector('.films__list');
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 
@@ -37,7 +38,7 @@ function createDirectorsSelect(films) {
     const filters = getFilters();
     const filteredFilms = filterFilms(films, filters);
 
-    printFilms(filteredFilms);
+    printFilms(list, infoSection, filteredFilms);
   });
 
   filterSection.appendChild(newSelect);
@@ -51,7 +52,7 @@ async function getFilms() {
   removeLoader(spinner);
   createDirectorsSelect(filmsData);
 
-  return printFilms(filmsData);
+  return printFilms(list, infoSection, filmsData);
 }
 
 getFilms();
@@ -62,5 +63,5 @@ queryInput.addEventListener('keyup', () => {
 
   const filteredFilms = filterFilms(filmsData, filters);
 
-  printFilms(filteredFilms);
+  printFilms(list, infoSection, filteredFilms);
 });

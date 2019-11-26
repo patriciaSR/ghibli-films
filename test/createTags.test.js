@@ -1,4 +1,4 @@
-import { createTag, findImage, createSelectTag } from '../js/createTags.js';
+import { createTag, findImage, createSelectTag, addEventToTag } from '../js/createTags.js';
 import { photos } from '../js/photos.js';
 import { photosFakeArr, totoroImg } from './fixtures/variables-fixtures.js';
 
@@ -54,7 +54,7 @@ describe('createTags module', () => {
 
       const result = createSelectTag(options, defaultText, className);
       const select = result.querySelector(`.${className}__select`);
-      const option = result.querySelector(`.${className}__option`);;
+      const option = result.querySelector(`.${className}__option`);
 
       expect(select.tagName).toBe('SELECT');
       expect(select.length).toBe(4);
@@ -83,5 +83,29 @@ describe('createTags module', () => {
 
       expect(result).toBe(defaultPhoto);
     });
+  });
+});
+
+describe('addEventListener function', () => {
+  test('it add listener to a tag', () => {
+    document.body.innerHTML = '<div></div>';
+
+    const newTag = document.querySelector('div');
+    const event = 'click';
+    const func = jest.fn();
+
+    addEventToTag(newTag, event, func);
+    newTag.click();
+
+    expect(func).toHaveBeenCalled();
+  });
+
+  test('it find a image with no matching name', () => {
+    const name = 'lola';
+    const defaultPhoto = totoroImg;
+
+    const result = findImage(name, photosFakeArr);
+
+    expect(result).toBe(defaultPhoto);
   });
 });
