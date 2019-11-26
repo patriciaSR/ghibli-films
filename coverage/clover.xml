@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1574770638129" clover="3.2.0">
-  <project timestamp="1574770638129" name="All files">
-    <metrics statements="56" coveredstatements="55" conditionals="12" coveredconditionals="11" methods="17" coveredmethods="16" elements="85" coveredelements="82" complexity="0" loc="56" ncloc="56" packages="2" files="8" classes="8"/>
+<coverage generated="1574772275921" clover="3.2.0">
+  <project timestamp="1574772275922" name="All files">
+    <metrics statements="59" coveredstatements="58" conditionals="12" coveredconditionals="11" methods="17" coveredmethods="16" elements="88" coveredelements="85" complexity="0" loc="59" ncloc="59" packages="2" files="8" classes="8"/>
     <package name="js">
       <metrics statements="53" coveredstatements="52" conditionals="12" coveredconditionals="11" methods="17" coveredmethods="16"/>
       <file name="callApi.js" path="/home/patricia/workspace/ghibli-films/js/callApi.js">
@@ -77,15 +77,18 @@
       </file>
     </package>
     <package name="test.fixtures">
-      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="filmsApi.js" path="/home/patricia/workspace/ghibli-films/test/fixtures/filmsApi.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
       <file name="variables-fixtures.js" path="/home/patricia/workspace/ghibli-films/test/fixtures/variables-fixtures.js">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
       </file>
     </package>
   </project>

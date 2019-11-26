@@ -19,4 +19,23 @@ const mockFilms = [
   },
 ];
 
-export { ENDPOINTGOOD, ENDPOINTBAD, mockFilms };
+const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
+
+const photosFakeArr = [
+  {
+    name: 'patricia',
+    photo: 'patriciaURL',
+  },
+  {
+    name: 'paco',
+    photo: 'pacoURL',
+  },
+];
+
+export {
+  ENDPOINTGOOD,
+  ENDPOINTBAD,
+  mockFilms,
+  photosFakeArr,
+  totoroImg,
+};

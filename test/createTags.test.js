@@ -1,18 +1,7 @@
 import { createTag, findImage, createSelectTag } from '../js/createTags.js';
 import { photos } from '../js/photos.js';
+import { photosFakeArr, totoroImg } from './fixtures/variables-fixtures.js';
 
-const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
-
-const photosFakeArr = [
-  {
-    name: 'patricia',
-    photo: 'patriciaURL',
-  },
-  {
-    name: 'paco',
-    photo: 'pacoURL',
-  },
-];
 
 describe('createTags module', () => {
   describe('createTag function', () => {
