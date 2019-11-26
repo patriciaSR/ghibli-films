@@ -2,11 +2,9 @@ import { createTag } from './createTags.js';
 
 const totoroSad = './../images/totoroSad.gif';
 
-const infoSection = document.querySelector('.films__info-container');
-const list = document.querySelector('.films__list');
 
 
-function noResults() {
+function noResults(list, infoSection) {
   list.innerHTML = '';
 
   const noResult = `<div class="noResults__container">
@@ -19,16 +17,13 @@ function noResults() {
 
 function addLoader(infoSection) {
   const newLoader = createTag('p', 'Loading...', 'spinner');
-  // const newLoader = `<p class="spinner">Loading...</p>`
 
   infoSection.appendChild(newLoader);
 
   return infoSection;
 }
 
-function removeLoader() {
-  const spinner = document.querySelector('.spinner');
-
+function removeLoader(spinner) {
   if (spinner) {
     spinner.remove();
   }

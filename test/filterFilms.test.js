@@ -1,4 +1,4 @@
-import { filterFilms, getFilters, isTextIncluded } from '../js/filterFilms.js';
+import { filterFilms, getFilters } from '../js/filterFilms.js';
 
 const mockFilms = [
   {

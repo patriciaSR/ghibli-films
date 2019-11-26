@@ -1,7 +1,7 @@
 
 import { callApi } from '../js/callApi.js';
 import { filmsApi } from './fixtures/filmsApi.js';
-import { ENDPOINTGOOD, ENDPOINTBAD } from './fixtures/variables-fixtures.js';
+import { ENDPOINTGOOD } from './fixtures/variables-fixtures.js';
 
 describe('testing api', () => {
   beforeEach(() => {

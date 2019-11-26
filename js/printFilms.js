@@ -35,7 +35,7 @@ function printFilms(films) {
   const list = document.querySelector('.films__list');
 
   if (!films.length) {
-    return noResults(list);
+    return noResults(list, infoSection);
   }
 
   list.innerHTML = '';
