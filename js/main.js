@@ -18,7 +18,6 @@ const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 let filmsData = [];
 
 async function getFilms() {
-  addLoader(infoSection);
   await timeout(2000);
   filmsData = await callApi(ENDPOINT);
 
@@ -35,6 +34,7 @@ async function getFilms() {
   return printFilms(list, infoSection, filmsData);
 }
 
+addLoader(infoSection);
 getFilms();
 
 // addEventListeners
