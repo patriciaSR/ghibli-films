@@ -1,11 +1,50 @@
-import { createTag, findImage, createSelectTag, addEventToTag } from '../js/createTags.js';
+import {
+  addEventToTag,
+  findImage,
+  createTag,
+  createSelectTag,
+} from '../js/createTags.js';
+
 import { photos } from '../js/photos.js';
 import { mockPhotos, totoroImg } from './fixtures/variables-fixtures.js';
 
-
 describe('createTags module', () => {
+  describe('addEventListener function', () => {
+    test('it add listener to any tag', () => {
+      document.body.innerHTML = '<div></div>';
+
+      const newTag = document.querySelector('div');
+      const event = 'click';
+      const func = jest.fn();
+
+      addEventToTag(newTag, event, func);
+      newTag.click();
+
+      expect(func).toHaveBeenCalled();
+    });
+  });
+
+  describe('findImage function', () => {
+    test('it finds a image src with a name', () => {
+      const { name } = mockPhotos[0];
+
+      const result = findImage(name, mockPhotos);
+
+      expect(result).toBe(mockPhotos[0].photo);
+    });
+
+    test('it returns a default image src with no matching name', () => {
+      const name = 'lola';
+      const defaultPhoto = totoroImg;
+
+      const result = findImage(name, mockPhotos);
+
+      expect(result).toBe(defaultPhoto);
+    });
+  });
+
   describe('createTag function', () => {
-    test('it creates a <div>', () => {
+    test('it creates a <div> with text', () => {
       const tagName = 'div';
       const text = 'foo';
 
@@ -15,7 +54,7 @@ describe('createTags module', () => {
       expect(result.textContent).toBe(text);
     });
 
-    test('it creates a <p> with a class', () => {
+    test('it creates a <p> with text and class', () => {
       const tagName = 'p';
       const text = 'foo';
       const className = 'foo';
@@ -29,7 +68,7 @@ describe('createTags module', () => {
       // expect(result.classList.contains(className)).toBeTruthy();
     });
 
-    test('it creates a <img>', () => {
+    test('it creates a <img> with class, src and alt', () => {
       const tagName = 'img';
       const text = 'foo';
       const className = 'foo';
@@ -46,9 +85,9 @@ describe('createTags module', () => {
     });
   });
 
-  describe('createSelector function', () => {
-    test('it creates a select node', () => {
-      const options = ['patricia', 'clara', 'marta'];
+  describe('createSelectorTag function', () => {
+    test('it creates a select node with 4 options', () => {
+      const options = ['patricia', 'paco', 'luis'];
       const defaultText = 'foo';
       const className = 'foo';
 
@@ -64,39 +103,5 @@ describe('createTags module', () => {
       expect(option.textContent).toBe(defaultText);
       expect(option.classList).toContain(`${className}__option`);
     });
-  });
-
-  describe('findImage src', () => {
-    test('it find a image with a name', () => {
-      const { name } = mockPhotos[0];
-
-      const result = findImage(name, mockPhotos);
-
-      expect(result).toBe(mockPhotos[0].photo);
-    });
-
-    test('it find a image with no matching name', () => {
-      const name = 'lola';
-      const defaultPhoto = totoroImg;
-
-      const result = findImage(name, mockPhotos);
-
-      expect(result).toBe(defaultPhoto);
-    });
-  });
-});
-
-describe('addEventListener function', () => {
-  test('it add listener to a tag', () => {
-    document.body.innerHTML = '<div></div>';
-
-    const newTag = document.querySelector('div');
-    const event = 'click';
-    const func = jest.fn();
-
-    addEventToTag(newTag, event, func);
-    newTag.click();
-
-    expect(func).toHaveBeenCalled();
   });
 });

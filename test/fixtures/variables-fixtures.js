@@ -4,17 +4,17 @@ const ENDPOINTBAD = 'https://ghibliapi.herokuappjasdjkh';
 const mockFilms = [
   {
     title: 'bambi',
-    description: 'ciervo',
+    description: 'deer disney',
     director: 'patricia',
   },
   {
     title: 'dumbo',
-    description: 'elefante',
+    description: 'elephant disney',
     director: 'paco',
   },
   {
     title: 'nemo',
-    description: 'pez',
+    description: 'fish pixar',
     director: 'luis',
   },
 ];

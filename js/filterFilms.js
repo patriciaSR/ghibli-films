@@ -17,11 +17,14 @@ function filterFilms(films, filters) {
 
 function getFilters() {
   const queryInput = document.querySelector('.filter__input');
-  const queryText = queryInput.value;
+  let queryText = queryInput.value;
   let director = document.querySelector('.directors__select').value;
 
   if (director === 'Selecciona un director...') {
     director = null;
+  }
+  if (!queryText) {
+    queryText = '';
   }
 
   return { queryText, director };

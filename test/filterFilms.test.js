@@ -1,8 +1,36 @@
-import { filterFilms, getFilters } from '../js/filterFilms.js';
+import { isTextIncluded, filterFilms, getFilters } from '../js/filterFilms.js';
 import { mockFilms } from './fixtures/variables-fixtures.js';
 
+describe('isTextIncluded function', () => {
+  test('it returns true if title film is equal to query test', () => {
+    const queryText = 'bambi';
+    const film = mockFilms[0];
 
-describe('filter films, filter films by queries', () => {
+    const result = isTextIncluded(film, queryText);
+
+    expect(result).toBe(true);
+  });
+
+  test('it returns false if title film is not equal to query test', () => {
+    const queryText = 'lola';
+    const film = mockFilms[0];
+
+    const result = isTextIncluded(film, queryText);
+
+    expect(result).toBe(false);
+  });
+
+  test('it returns true if queryText is "" ', () => {
+    const queryText = '';
+    const film = mockFilms[0];
+
+    const result = isTextIncluded(film, queryText);
+
+    expect(result).toBe(true);
+  });
+});
+
+describe('filterFilms function , filter films by queries', () => {
   test('it returns all elements if filter is empty', () => {
     const queryText = '';
     const director = null;
@@ -30,19 +58,19 @@ describe('filter films, filter films by queries', () => {
     expect(result).toContain(mockFilms[0]);
   });
 
-  test('it returns all elements that contains "el" in description', () => {
-    const queryText = 'el';
+  test('it returns all elements that contains "dis" in description', () => {
+    const queryText = 'dis';
     const director = null;
     const filters = {
       queryText,
       director,
     };
 
-    const expected = mockFilms.slice(1, 1);
+    const expected = mockFilms.slice(0, 2);
 
     const result = filterFilms(mockFilms, filters);
 
-    expect(result.length).toBe(1);
+    expect(result.length).toBe(2);
     expect(result).toEqual(expect.arrayContaining(expected));
   });
 
@@ -86,9 +114,9 @@ describe('filter films, filter films by queries', () => {
   });
 });
 
-describe('getFilters test', () => {
-  // Lo que se ejecuta antes de cada test. Hay otros como:
-  // afterEach, before y after.
+describe('getFilters function', () => {
+  // before test code execution
+  // othet methods: afterEach, before y after.
   beforeEach(() => {
     document.body.innerHTML = `
       <input class="filter__input" />
@@ -128,6 +156,17 @@ describe('getFilters test', () => {
     const result = getFilters();
 
     expect(result.director).toEqual(null);
+    // expect(result.director).toBeNull();
+  });
+
+  test('it returns " " queryText filter', () => {
+    const queryInput = document.querySelector('.filter__input');
+    const EmptyQueryText = '';
+
+    queryInput.value = EmptyQueryText;
+    const result = getFilters();
+
+    expect(result.queryText).toEqual(EmptyQueryText);
     // expect(result.director).toBeNull();
   });
 });
