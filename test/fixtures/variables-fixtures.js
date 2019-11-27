@@ -3,32 +3,32 @@ const ENDPOINTBAD = 'https://ghibliapi.herokuappjasdjkh';
 
 const mockFilms = [
   {
-    title: 'hola',
-    description: 'no',
+    title: 'bambi',
+    description: 'ciervo',
     director: 'patricia',
   },
   {
-    title: 'adios',
-    description: 'no',
-    director: 'chus',
+    title: 'dumbo',
+    description: 'elefante',
+    director: 'paco',
   },
   {
-    title: 'byeo',
-    description: 'yes',
+    title: 'nemo',
+    description: 'pez',
     director: 'luis',
   },
 ];
 
 const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';
 
-const photosFakeArr = [
+const mockPhotos = [
   {
-    name: 'patricia',
-    photo: 'patriciaURL',
+    name: 'bambi',
+    photo: 'bambiURL',
   },
   {
-    name: 'paco',
-    photo: 'pacoURL',
+    name: 'dumbo',
+    photo: 'dumboURL',
   },
 ];
 
@@ -36,6 +36,6 @@ export {
   ENDPOINTGOOD,
   ENDPOINTBAD,
   mockFilms,
-  photosFakeArr,
+  mockPhotos,
   totoroImg,
 };

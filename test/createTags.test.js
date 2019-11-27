@@ -1,6 +1,6 @@
 import { createTag, findImage, createSelectTag, addEventToTag } from '../js/createTags.js';
 import { photos } from '../js/photos.js';
-import { photosFakeArr, totoroImg } from './fixtures/variables-fixtures.js';
+import { mockPhotos, totoroImg } from './fixtures/variables-fixtures.js';
 
 
 describe('createTags module', () => {
@@ -68,18 +68,18 @@ describe('createTags module', () => {
 
   describe('findImage src', () => {
     test('it find a image with a name', () => {
-      const name = 'patricia';
+      const { name } = mockPhotos[0];
 
-      const result = findImage(name, photosFakeArr);
+      const result = findImage(name, mockPhotos);
 
-      expect(result).toBe('patriciaURL');
+      expect(result).toBe(mockPhotos[0].photo);
     });
 
     test('it find a image with no matching name', () => {
       const name = 'lola';
       const defaultPhoto = totoroImg;
 
-      const result = findImage(name, photosFakeArr);
+      const result = findImage(name, mockPhotos);
 
       expect(result).toBe(defaultPhoto);
     });

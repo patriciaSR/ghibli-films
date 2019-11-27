@@ -8,7 +8,7 @@ describe('testing api', () => {
     fetch.resetMocks();
   });
 
-  it('calls GibliApi with the rigth url', () => {
+  test('it calls GibliApi with the rigth url', () => {
     fetch.mockResponseOnce(JSON.stringify(filmsApi));
 
     // assert on the response
@@ -17,12 +17,12 @@ describe('testing api', () => {
     expect(fetch).toHaveBeenCalled();
     expect(fetch).toHaveBeenCalledWith(ENDPOINTGOOD);
 
-    // assert on the times called and arguments given to fetch
+    // Other expects: assert on the times called and arguments given to fetch
     // expect(fetch.mock.calls.length).toEqual(1);
     // expect(fetch.mock.calls[0][0]).toEqual(ENDPOINTGOOD);
   });
 
-  it('returns an error when fetch fails', async () => {
+  test('it returns an error when fetch fails', async () => {
     const error = new Error('errorrrrrrrrrrrr');
     fetch.mockReject(error);
 
@@ -32,10 +32,10 @@ describe('testing api', () => {
     expect(result).toEqual(error);
   });
 
-  it('calls GibliApi and returns data to me', async () => {
+  test('it calls GibliApi and returns data', async () => {
     fetch.mockResponseOnce(JSON.stringify(filmsApi));
 
-    // assert on the response
+    // Using .then(): assert on the response
     // callApi(ENDPOINTGOOD).then((res) => {
     //   expect(res).toEqual(filmsApi);
     // });
