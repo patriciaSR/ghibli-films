@@ -1,3 +1,5 @@
+import { createSelectTag } from './createTags.js';
+
 function getDirectors(films = []) {
   const filmsDirectors = [];
 
@@ -10,4 +12,14 @@ function getDirectors(films = []) {
   return filmsDirectors;
 }
 
-export { getDirectors };
+function createDirectorsSelect(films) {
+  const directors = getDirectors(films);
+  const newSelect = createSelectTag(directors, 'Selecciona un director...', 'directors');
+  const filterSection = document.querySelector('.main__filter');
+
+  filterSection.appendChild(newSelect);
+
+  return newSelect;
+}
+
+export { getDirectors, createDirectorsSelect };
