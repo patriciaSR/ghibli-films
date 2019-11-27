@@ -1,8 +1,27 @@
-import { printFilm, printFilms, unfoldDescription } from '../js/printFilms.js';
+import { unfoldDescription, printFilm, printFilms } from '../js/printFilms.js';
 import { mockFilms } from './fixtures/variables-fixtures.js';
 
+describe('unfoldDescription function', () => {
+  test('it toogles the class hidden in an element', () => {
+    const textDescription = document.createElement('p');
+    const mockEvent = {
+      currentTarget: {
+        nextSibling: textDescription,
+      },
+    };
+
+    unfoldDescription(mockEvent);
+
+    expect(textDescription.classList).toContain('hidden');
+
+    unfoldDescription(mockEvent);
+
+    expect(textDescription.classList).not.toContain('hidden');
+  });
+});
+
 describe('printFilms', () => {
-  describe('printFilm', () => {
+  describe('printFilm function', () => {
     test('it creates a new <li> with film info', () => {
       const result = printFilm(mockFilms[0]);
       const resultTitle = result.querySelector('.film__title');
@@ -20,7 +39,11 @@ describe('printFilms', () => {
   });
 
   describe('printFilms', () => {
-    document.body.innerHTML = '<ol></ol><div></div>';
+    document.body.innerHTML = `
+      <ol></ol>
+      <div></div>
+    `;
+
     const list = document.querySelector('ol');
     const infoSection = document.querySelector('div');
 
@@ -32,17 +55,6 @@ describe('printFilms', () => {
       expect(infoSection.innerHTML.length).toBe(0);
     });
 
-    test('it prints noResults <div> without any film', () => {
-      const noFilms = [];
-
-      printFilms(list, infoSection, noFilms);
-      const noResultText = infoSection.querySelector('.noResults__container');
-
-      expect(infoSection.innerHTML.length).not.toBe(0);
-      expect(noResultText.tagName).toBe('DIV');
-      expect(noResultText.classList).toContain('noResults__container');
-    });
-
     test('it prints noResults <div>  with undefined filmsArray', () => {
       printFilms(list, infoSection);
       const noResultText = infoSection.querySelector('.noResults__container');
@@ -51,24 +63,5 @@ describe('printFilms', () => {
       expect(noResultText.tagName).toBe('DIV');
       expect(noResultText.classList).toContain('noResults__container');
     });
-  });
-});
-
-describe('unfoldDescription', () => {
-  test('it toogles the class hidden in an element', () => {
-    const textDescription = document.createElement('p');
-    const mockEvent = {
-      currentTarget: {
-        nextSibling: textDescription,
-      },
-    };
-
-    unfoldDescription(mockEvent);
-
-    expect(textDescription.classList).toContain('hidden');
-
-    unfoldDescription(mockEvent);
-
-    expect(textDescription.classList).not.toContain('hidden');
   });
 });
