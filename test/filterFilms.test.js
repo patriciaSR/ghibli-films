@@ -133,7 +133,7 @@ describe('getFilters function', () => {
     const queryText = 'hola';
 
     queryInput.value = queryText;
-    const result = getFilters();
+    const result = getFilters(queryInput);
 
     expect(result.queryText).toEqual(queryText);
   });
@@ -164,7 +164,7 @@ describe('getFilters function', () => {
     const EmptyQueryText = '';
 
     queryInput.value = EmptyQueryText;
-    const result = getFilters();
+    const result = getFilters(queryInput);
 
     expect(result.queryText).toEqual(EmptyQueryText);
     // expect(result.director).toBeNull();

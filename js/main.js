@@ -10,7 +10,6 @@ import { timeout } from './timeout.js';
 
 const queryInput = document.querySelector('.filter__input');
 const infoSection = document.querySelector('.films__info-container');
-const spinner = document.querySelector('.spinner');
 const list = document.querySelector('.films__list');
 
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
@@ -35,7 +34,7 @@ function createDirectorsSelect(films) {
   const filterSection = document.querySelector('.main__filter');
 
   addEventToTag(newSelect, 'change', () => {
-    const filters = getFilters();
+    const filters = getFilters(queryInput);
     const filteredFilms = filterFilms(films, filters);
 
     printFilms(list, infoSection, filteredFilms);
@@ -49,7 +48,7 @@ async function getFilms() {
   await timeout(2000);
   filmsData = await callApi(ENDPOINT);
 
-  removeLoader(spinner);
+  removeLoader();
   createDirectorsSelect(filmsData);
 
   return printFilms(list, infoSection, filmsData);

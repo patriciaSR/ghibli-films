@@ -15,8 +15,7 @@ function filterFilms(films, filters) {
   return filteredFilms;
 }
 
-function getFilters() {
-  const queryInput = document.querySelector('.filter__input');
+function getFilters(queryInput = '') {
   let queryText = queryInput.value;
   let director = document.querySelector('.directors__select').value;
 

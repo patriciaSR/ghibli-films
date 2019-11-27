@@ -58,9 +58,8 @@ describe('infoSection testing', () => {
         <p class="spinner"></p>
         </div>
       `;
-      const spinner = document.querySelector('p');
 
-      removeLoader(spinner);
+      removeLoader();
       const infoSection = document.querySelector('div');
 
       expect(infoSection.length).toBe(undefined);
