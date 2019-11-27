@@ -17,6 +17,11 @@ const mockFilms = [
     description: 'fish pixar',
     director: 'luis',
   },
+  {
+    title: 'the lion king',
+    description: 'lion disney',
+    director: 'luis',
+  },
 ];
 
 const totoroImg = 'https://i.pinimg.com/originals/f7/f8/4d/f7f84dc6d93cb70b5ea612fd26f5dd24.jpg';

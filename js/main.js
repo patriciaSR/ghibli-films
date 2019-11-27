@@ -6,7 +6,7 @@ import { printFilms } from './printFilms.js';
 import { addLoader, removeLoader } from './infoSection.js';
 import { filterFilms, getFilters } from './filterFilms.js';
 import { timeout } from './timeout.js';
-
+import { getDirectors } from './getDirectors.js';
 
 const queryInput = document.querySelector('.filter__input');
 const infoSection = document.querySelector('.films__info-container');
@@ -15,18 +15,6 @@ const list = document.querySelector('.films__list');
 const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 
 let filmsData = [];
-
-function getDirectors(films) {
-  const filmsDirectors = [];
-
-  films.forEach((film) => {
-    if (!filmsDirectors.includes(film.director)) {
-      filmsDirectors.push(film.director);
-    }
-  });
-
-  return filmsDirectors;
-}
 
 function createDirectorsSelect(films) {
   const directors = getDirectors(films);

@@ -66,11 +66,11 @@ describe('filterFilms function , filter films by queries', () => {
       director,
     };
 
-    const expected = mockFilms.slice(0, 2);
+    const expected = [mockFilms[0], mockFilms[1], mockFilms[3]];
 
     const result = filterFilms(mockFilms, filters);
 
-    expect(result.length).toBe(2);
+    expect(result.length).toBe(3);
     expect(result).toEqual(expect.arrayContaining(expected));
   });
 
@@ -98,7 +98,7 @@ describe('filterFilms function , filter films by queries', () => {
 
     const result = filterFilms(mockFilms, filters);
 
-    expect(result.length).toBe(1);
+    expect(result.length).toBe(2);
     expect(result).toContain(mockFilms[2]);
   });
 

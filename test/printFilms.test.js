@@ -51,7 +51,7 @@ describe('printFilms', () => {
       printFilms(list, infoSection, mockFilms);
 
       const resultLis = list.querySelectorAll('li');
-      expect(resultLis.length).toBe(3);
+      expect(resultLis.length).toBe(4);
       expect(infoSection.innerHTML.length).toBe(0);
     });
 

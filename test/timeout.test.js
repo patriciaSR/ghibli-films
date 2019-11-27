@@ -3,7 +3,7 @@ import { timeout } from '../js/timeout.js';
 describe('setTimeout test', () => {
   jest.useFakeTimers();
 
-  test('waits 2 second before ending the game', async () => {
+  test('waits 2 second before resolve it', async () => {
     const time = 2000;
     timeout(time);
 
