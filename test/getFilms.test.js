@@ -5,7 +5,7 @@ import * as tagsModule from '../js/createTags.js';
 import * as printModule from '../js/printFilms.js';
 import * as infoModule from '../js/infoSection.js';
 
-describe('', () => {
+describe('getFilms function', () => {
   jest.useFakeTimers();
 
   document.body.innerHTML = `
@@ -17,8 +17,7 @@ describe('', () => {
   </div>
 `;
 
-
-  test('', async () => {
+  test('really works ?¿', async () => {
     const time = 2000;
     const spyTime = jest.spyOn(timeModule, 'timeout');
     const spyEvent = jest.spyOn(tagsModule, 'addEventToTag');
