@@ -2,10 +2,16 @@
 import { callApi } from '../js/callApi.js';
 import { filmsApi } from './fixtures/filmsApi.js';
 import { ENDPOINTGOOD } from './fixtures/variables-fixtures.js';
+import * as infoModule from '../js/infoSection.js';
 
 describe('testing api', () => {
   beforeEach(() => {
     fetch.resetMocks();
+
+    document.body.innerHTML = `
+    <div></div>
+    <ol></ol>
+  `;
   });
 
   test('it calls GibliApi with the rigth url', () => {
@@ -27,9 +33,13 @@ describe('testing api', () => {
     fetch.mockReject(error);
 
     // assert on the response
-    const result = await callApi(ENDPOINTGOOD);
+    const infoSection = document.querySelector('div');
+    const spyErrorFn = jest.spyOn(infoModule, 'errorMessage');
+
+    const result = await callApi(ENDPOINTGOOD, infoSection);
 
     expect(result).toEqual(error);
+    expect(spyErrorFn).toHaveBeenCalled();
   });
 
   test('it calls GibliApi and returns data', async () => {

@@ -19,7 +19,7 @@ let filmsData = [];
 
 async function getFilms() {
   await timeout(2000);
-  filmsData = await callApi(ENDPOINT);
+  filmsData = await callApi(ENDPOINT, infoSection);
 
   removeLoader();
   const DirectorSelect = createDirectorsSelect(filmsData);

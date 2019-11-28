@@ -1,4 +1,4 @@
-import { noResults, addLoader, removeLoader } from '../js/infoSection.js';
+import { noResults, errorMessage, addLoader, removeLoader } from '../js/infoSection.js';
 
 describe('infoSection testing', () => {
   beforeEach(() => {
@@ -21,13 +21,36 @@ describe('infoSection testing', () => {
       expect(result.tagName).toBe('DIV');
       expect(result.classList).toContain('noResults__container');
       expect(resultText.tagName).toBe('P');
-      expect(resultText.textContent).toBe('No hay resultados :( ');
+      expect(resultText.textContent).toBe('No results :( ');
       expect(resultText.classList).toContain('noResults__text');
     });
 
     test('it throws an error if container is undefined', () => {
       expect(() => {
         noResults();
+      }).toThrow();
+    });
+  });
+
+  describe('ErrorMessage function', () => {
+    test('it creates a errorMessage <div> inside an element', () => {
+      const infoSection = document.querySelector('div');
+
+      errorMessage(infoSection);
+
+      const result = infoSection.firstChild;
+      const resultText = result.querySelector('.noResults__text');
+
+      expect(result.tagName).toBe('DIV');
+      expect(result.classList).toContain('noResults__container');
+      expect(resultText.tagName).toBe('P');
+      expect(resultText.textContent).toBe('Oops! something went wrong. Try again later :)');
+      expect(resultText.classList).toContain('noResults__text');
+    });
+
+    test('it throws an error if container is undefined', () => {
+      expect(() => {
+        errorMessage();
       }).toThrow();
     });
   });

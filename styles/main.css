@@ -113,6 +113,9 @@ body, h1 {
 .noResults__container {
   text-align: center;
 }
+.noResults__png{
+  width: 200px;
+}
 .hidden {
   visibility: hidden;
   height: 1px;
