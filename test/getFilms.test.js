@@ -1,11 +1,9 @@
-import { getFilms } from '../js/getFilms.js';
+import * as mainModule from '../js/main.js';
 import { filmsApi } from './fixtures/filmsApi.js';
 import * as timeModule from '../js/timeout.js';
 import * as tagsModule from '../js/createTags.js';
 import * as printModule from '../js/printFilms.js';
 import * as infoModule from '../js/infoSection.js';
-
-
 
 describe('', () => {
   jest.useFakeTimers();
@@ -28,7 +26,7 @@ describe('', () => {
     const spyLoader = jest.spyOn(infoModule, 'removeLoader');
 
 
-    getFilms().then((data) => {
+    mainModule.getFilms().then((data) => {
       expect(data).toBe(filmsApi);
 
       const select = document.querySelector('select');

@@ -8,7 +8,6 @@ import { timeout } from './timeout.js';
 import { createDirectorsSelect } from './getDirectors.js';
 import { addEventToTag } from './createTags.js';
 
-
 const queryInput = document.querySelector('.filter__input');
 const infoSection = document.querySelector('.films__info-container');
 const list = document.querySelector('.films__list');
@@ -17,31 +16,38 @@ const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 
 let filmsData = [];
 
-// async function getFilms() {
-//   await timeout(2000);
-//   filmsData = await callApi(ENDPOINT, infoSection);
+async function getFilms() {
+  await timeout(2000);
+  filmsData = await callApi(ENDPOINT, infoSection);
 
-//   removeLoader();
-//   const DirectorSelect = createDirectorsSelect(filmsData);
+  removeLoader();
+  const DirectorSelect = createDirectorsSelect(filmsData);
 
-//   addEventToTag(DirectorSelect, 'change', () => {
-//     const filters = getFilters(queryInput);
-//     const filteredFilms = filterFilms(filmsData, filters);
+  addEventToTag(DirectorSelect, 'change', () => {
+    const filters = getFilters(queryInput);
+    const filteredFilms = filterFilms(filmsData, filters);
 
-//     printFilms(list, infoSection, filteredFilms);
-//   });
+    printFilms(list, infoSection, filteredFilms);
+  });
 
-//   return printFilms(list, infoSection, filmsData);
-// }
+  return printFilms(list, infoSection, filmsData);
+}
 
-addLoader(infoSection);
+if (infoSection) {
+  addLoader(infoSection);
+}
+
 getFilms();
 
-// addEventListeners
-queryInput.addEventListener('keyup', () => {
-  const filters = getFilters(queryInput);
+// addEventListenersmainModule
+if (queryInput) {
+  queryInput.addEventListener('keyup', () => {
+    const filters = getFilters(queryInput);
 
-  const filteredFilms = filterFilms(filmsData, filters);
+    const filteredFilms = filterFilms(filmsData, filters);
 
-  printFilms(list, infoSection, filteredFilms);
-});
+    printFilms(list, infoSection, filteredFilms);
+  });
+}
+
+export { getFilms };
