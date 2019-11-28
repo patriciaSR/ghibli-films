@@ -14,7 +14,7 @@ function getDirectors(films = []) {
 
 function createDirectorsSelect(films) {
   const directors = getDirectors(films);
-  const newSelect = createSelectTag(directors, 'Selecciona un director...', 'directors');
+  const newSelect = createSelectTag(directors, 'Select a film director...', 'directors');
   const filterSection = document.querySelector('.main__filter');
 
   filterSection.appendChild(newSelect);

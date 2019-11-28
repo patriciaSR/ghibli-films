@@ -48,7 +48,7 @@ describe('createDirectorsSelect function', () => {
     expect(filterSection.innerHTML.length).not.toBe(0);
     expect(select.length).toBe(4);
     expect(options[0].classList).toContain('directors__option');
-    expect(options[0].textContent).toBe('Selecciona un director...');
+    expect(options[0].textContent).toBe('Select a film director...');
     expect(options.length).toBe(4);
   });
 });

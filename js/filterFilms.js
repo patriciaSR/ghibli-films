@@ -19,7 +19,7 @@ function getFilters(queryInput = '') {
   let queryText = queryInput.value;
   let director = document.querySelector('.directors__select').value;
 
-  if (director === 'Selecciona un director...') {
+  if (director === 'Select a film director...') {
     director = null;
   }
   if (!queryText) {

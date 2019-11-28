@@ -121,7 +121,7 @@ describe('getFilters function', () => {
     document.body.innerHTML = `
       <input class="filter__input" />
       <select class="directors__select">
-        <option value="Selecciona un director..."></option>
+        <option value="Select a film director..."></option>
         <option value="foo">Foo</option>
         <option value="bar">Bar</option>
       </select>
@@ -150,7 +150,7 @@ describe('getFilters function', () => {
 
   test('it returns null director filter', () => {
     const querySelect = document.querySelector('.directors__select');
-    const director = 'Selecciona un director...';
+    const director = 'Select a film director...';
 
     querySelect.value = director;
     const result = getFilters();
