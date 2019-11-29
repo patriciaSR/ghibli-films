@@ -1,7 +1,7 @@
 import { createTag } from './createTags.js';
 
-const totoroSad = './../images/totoroSad.gif';
-const totoroNotFound = './../images/totoroNotFound.png';
+const totoroSad = './images/totoroSad.gif';
+const totoroNotFound = './images/totoroNotFound.png';
 
 
 function noResults(list, infoSection) {
