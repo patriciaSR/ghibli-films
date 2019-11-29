@@ -1,7 +1,8 @@
 {
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
   "extends": [
     "airbnb-base"
@@ -14,5 +15,9 @@
     "ecmaVersion": 2018
   },
   "rules": {
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "strict": 0,
+    "no-param-reassign": 0
   }
 }

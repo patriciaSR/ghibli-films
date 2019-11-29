@@ -4,16 +4,24 @@
   "description": "Buscador de películas del Estudio Ghibli interactivo usando JavaScript vanilla, CSS y HTML5,",
   "main": "index.js",
   "dependencies": {
-    "eslint-config-standard": "^14.1.0"
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-jest": "^24.9.0",
+    "eslint-config-standard": "^14.1.0",
+    "jest-fetch-mock": "^2.1.2"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "jest": "^24.9.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test:coverage": "jest --collect-coverage"
   },
   "repository": {
     "type": "git",
@@ -23,6 +31,12 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/patriciaSR/ghibli-films/issues"
+  },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.js"
+    ]
   },
   "homepage": "https://github.com/patriciaSR/ghibli-films#readme"
 }
