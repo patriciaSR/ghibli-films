@@ -10,7 +10,7 @@ const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 async function getFilms(section) {
   addLoader(section);
   await timeout(2000);
-  
+
   const filmsData = await callApi(ENDPOINT, section);
   const list = document.querySelector('.films__list');
 

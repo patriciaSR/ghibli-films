@@ -22,7 +22,7 @@ describe('getFilms function', () => {
     removeLoader = stubFunction('../js/infoSection.js', 'removeLoader');
     callApi = stubFunction('../js/callApi.js', 'callApi');
     timeout = stubFunction('../js/timeout.js', 'timeout');
-    
+
     // Import "getFilms" aftermocking everything
     getFilms = require('../js/getFilms.js').getFilms;
   });
