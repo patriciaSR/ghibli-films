@@ -7,7 +7,7 @@ async function callApi(ENDPOINT, infoSection) {
     return data;
   } catch (error) {
     errorMessage(infoSection);
-    return error;
+    return null;
   }
 }
 
