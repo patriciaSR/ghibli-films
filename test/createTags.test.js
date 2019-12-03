@@ -20,7 +20,7 @@ describe('createTags module', () => {
       addEventToTag(newTag, event, func);
       newTag.click();
 
-      expect(func).toHaveBeenCalled();
+      expect(func).toHaveBeenCalledTimes(1);
     });
   });
 
