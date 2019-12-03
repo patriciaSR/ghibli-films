@@ -12,20 +12,22 @@ const list = document.querySelector('.films__list');
 
 getFilms(infoSection)
   .then((films) => {
-    const directorSelect = createDirectorsSelect(films);
+    if (films !== null) {
+      const directorSelect = createDirectorsSelect(films);
 
-    addEventToTag(directorSelect, 'change', () => {
-      const filters = getFilters(queryInput);
-      const filteredFilms = filterFilms(films, filters);
+      addEventToTag(directorSelect, 'change', () => {
+        const filters = getFilters(queryInput);
+        const filteredFilms = filterFilms(films, filters);
 
-      printFilms(list, infoSection, filteredFilms);
-    });
+        printFilms(list, infoSection, filteredFilms);
+      });
 
-    queryInput.addEventListener('keyup', () => {
-      const filters = getFilters(queryInput);
+      queryInput.addEventListener('keyup', () => {
+        const filters = getFilters(queryInput);
 
-      const filteredFilms = filterFilms(films, filters);
+        const filteredFilms = filterFilms(films, filters);
 
-      printFilms(list, infoSection, filteredFilms);
-    });
+        printFilms(list, infoSection, filteredFilms);
+      });
+    }
   });

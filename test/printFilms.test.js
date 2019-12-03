@@ -20,25 +20,28 @@ describe('unfoldDescription function', () => {
   });
 });
 
-describe('printFilms', () => {
+describe('printFilms functions', () => {
   describe('printFilm function', () => {
     test('it creates a new <li> with film info', () => {
-      const result = printFilm(mockFilms[0]);
+      const film = mockFilms[0];
+
+      const result = printFilm(film);
+
       const resultTitle = result.querySelector('.film__title');
       const resultImage = result.querySelector('.film__image');
       const resultDescription = result.querySelector('.film__description-text');
 
       expect(result.tagName).toBe('LI');
       expect(resultTitle.tagName).toBe('H2');
-      expect(resultTitle.textContent).toBe(mockFilms[0].title);
+      expect(resultTitle.textContent).toBe(film.title);
       expect(resultImage.tagName).toBe('IMG');
       expect(resultDescription.tagName).toBe('P');
-      expect(resultDescription.textContent).toBe(mockFilms[0].description);
+      expect(resultDescription.textContent).toBe(film.description);
       expect(resultDescription.classList).toContain('hidden');
     });
   });
 
-  describe('printFilms', () => {
+  describe('printFilms function', () => {
     document.body.innerHTML = `
       <ol></ol>
       <div></div>
@@ -47,7 +50,7 @@ describe('printFilms', () => {
     const list = document.querySelector('ol');
     const infoSection = document.querySelector('div');
 
-    test('it print <ol> with al films <li>', () => {
+    test('it print <ol> with all films <li>', () => {
       printFilms(list, infoSection, mockFilms);
 
       const resultLis = list.querySelectorAll('li');
@@ -57,11 +60,13 @@ describe('printFilms', () => {
 
     test('it prints noResults <div>  with undefined filmsArray', () => {
       printFilms(list, infoSection);
-      const noResultText = infoSection.querySelector('.noResults__container');
+      const noResultContainer = infoSection.querySelector('.noResults__container');
+      const noResultText = infoSection.querySelector('.noResults__text');
 
       expect(infoSection.innerHTML.length).not.toBe(0);
-      expect(noResultText.tagName).toBe('DIV');
-      expect(noResultText.classList).toContain('noResults__container');
+      expect(noResultContainer.tagName).toBe('DIV');
+      expect(noResultText.tagName).toBe('P');
+      expect(noResultText.textContent).toBe('No results :( ');
     });
   });
 });

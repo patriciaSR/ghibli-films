@@ -20,7 +20,7 @@ describe('testing api', () => {
     // assert on the response
     callApi(ENDPOINTGOOD);
 
-    expect(fetch).toHaveBeenCalled();
+    expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(ENDPOINTGOOD);
 
     // Other expects: assert on the times called and arguments given to fetch
@@ -28,9 +28,8 @@ describe('testing api', () => {
     // expect(fetch.mock.calls[0][0]).toEqual(ENDPOINTGOOD);
   });
 
-  test('it returns an error when fetch fails', async () => {
-    const error = new Error('errorrrrrrrrrrrr');
-    fetch.mockReject(error);
+  test('it returns null when fetch fails', async () => {
+    fetch.mockReject(null);
 
     // assert on the response
     const infoSection = document.querySelector('div');
@@ -38,20 +37,21 @@ describe('testing api', () => {
 
     const result = await callApi(ENDPOINTGOOD, infoSection);
 
-    expect(result).toEqual(error);
-    expect(spyErrorFn).toHaveBeenCalled();
+    expect(result).toEqual(null);
+    expect(spyErrorFn).toHaveBeenCalledTimes(1);
+    expect(infoSection.innerHTML.length).not.toBe(0);
   });
 
   test('it calls GibliApi and returns data', async () => {
     fetch.mockResponseOnce(JSON.stringify(filmsApi));
 
+    const result = await callApi(ENDPOINTGOOD);
+
+    expect(result).toEqual(filmsApi);
+
     // Using .then(): assert on the response
     // callApi(ENDPOINTGOOD).then((res) => {
     //   expect(res).toEqual(filmsApi);
     // });
-
-    const result = await callApi(ENDPOINTGOOD);
-
-    expect(result).toEqual(filmsApi);
   });
 });
