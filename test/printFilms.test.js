@@ -47,7 +47,7 @@ describe('printFilms', () => {
     const list = document.querySelector('ol');
     const infoSection = document.querySelector('div');
 
-    test('it print <ol> with al films <li>', () => {
+    test('it print <ol> with all films <li>', () => {
       printFilms(list, infoSection, mockFilms);
 
       const resultLis = list.querySelectorAll('li');

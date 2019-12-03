@@ -52,10 +52,12 @@ describe('filterFilms function , filter films by queries', () => {
       director,
     };
 
+    const expected = mockFilms[0];
+
     const result = filterFilms(mockFilms, filters);
 
     expect(result.length).toBe(1);
-    expect(result).toContain(mockFilms[0]);
+    expect(result).toContain(expected);
   });
 
   test('it returns all elements that contains "dis" in description', () => {
@@ -96,10 +98,12 @@ describe('filterFilms function , filter films by queries', () => {
       director,
     };
 
+    const expected = mockFilms[2];
+
     const result = filterFilms(mockFilms, filters);
 
     expect(result.length).toBe(2);
-    expect(result).toContain(mockFilms[2]);
+    expect(result).toContain(expected);
   });
 
   test('it throws an error if queryText is undefined', () => {

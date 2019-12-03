@@ -28,9 +28,11 @@ describe('createTags module', () => {
     test('it finds a image src with a name', () => {
       const { name } = mockPhotos[0];
 
+      const expected = mockPhotos[0].photo;
+
       const result = findImage(name, mockPhotos);
 
-      expect(result).toBe(mockPhotos[0].photo);
+      expect(result).toBe(expected);
     });
 
     test('it returns a default image src with no matching name', () => {
@@ -64,7 +66,7 @@ describe('createTags module', () => {
       expect(result.tagName).toBe(tagName.toUpperCase());
       expect(result.textContent).toBe(text);
       expect(result.classList).toContain(className);
-      // Otra opción:
+      // Other option:
       // expect(result.classList.contains(className)).toBeTruthy();
     });
 
@@ -72,7 +74,6 @@ describe('createTags module', () => {
       const tagName = 'img';
       const text = 'foo';
       const className = 'foo';
-      // const findImage = jest.fn();
       const src = findImage(text, photos);
 
       const result = createTag(tagName, text, className);
@@ -81,7 +82,6 @@ describe('createTags module', () => {
       expect(result.alt).toBe(text);
       expect(result.src).toBe(src);
       expect(result.classList).toContain(className);
-      // expect(findImage).toBeCalled();
     });
   });
 
