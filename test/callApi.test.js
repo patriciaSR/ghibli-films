@@ -28,9 +28,8 @@ describe('testing api', () => {
     // expect(fetch.mock.calls[0][0]).toEqual(ENDPOINTGOOD);
   });
 
-  test('it returns an error when fetch fails', async () => {
-    const error = new Error('errorrrrrrrrrrrr');
-    fetch.mockReject(error);
+  test('it returns null when fetch fails', async () => {
+    fetch.mockReject(null);
 
     // assert on the response
     const infoSection = document.querySelector('div');
@@ -38,8 +37,9 @@ describe('testing api', () => {
 
     const result = await callApi(ENDPOINTGOOD, infoSection);
 
-    expect(result).toEqual(error);
+    expect(result).toEqual(null);
     expect(spyErrorFn).toHaveBeenCalled();
+    expect(infoSection.innerHTML.length).not.toBe(0);
   });
 
   test('it calls GibliApi and returns data', async () => {
